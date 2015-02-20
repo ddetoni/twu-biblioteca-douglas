@@ -11,21 +11,16 @@ public class UserTest {
 
     @Test
     public void should_return_a_new_user() {
-        assertNotNull(new User("Douglas", "Detoni"));
+        assertNotNull(new User("ddetoni"));
     }
 
     @Test
-    public void should_return_user_name() {
-        assertEquals(new User("Douglas", "Detoni").getName(), "Douglas");
-    }
-
-    @Test
-    public void should_return_user_last_name() {
-        assertEquals(new User("Douglas", "Detoni").getLastName(), "Detoni");
+    public void should_return_username() {
+        assertEquals(new User("ddetoni").getUsername(), "ddetoni");
     }
 
     @Test
     public void should_return_user_role() {
-        assertEquals(new User("Douglas", "Detoni").getRole(), "user");
+        assertEquals(new User("ddetoni").getRole(), "user");
     }
 }

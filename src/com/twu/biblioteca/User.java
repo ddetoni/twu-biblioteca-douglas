@@ -2,21 +2,17 @@ package com.twu.biblioteca;
 
 
 public class User {
-    private String lastName;
-    private String name;
+    private String username;
 
-    public User(String name, String lastName) {
-        this.name = name;
-        this.lastName = lastName;
+
+    public User(String username) {
+        this.username = username;
     };
 
-    public String getName() {
-        return this.name;
+    public String getUsername() {
+        return this.username;
     }
 
-    public String getLastName() {
-        return this.lastName;
-    }
 
     public String getRole() {
         return "user";
