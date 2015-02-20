@@ -12,17 +12,17 @@ import static org.junit.Assert.assertTrue;
 public class AuthServiceTest {
 
     @Test
-    public void should_instantiate_an_authservice() {
+    public void shouldInstantiateAnAuthservice() {
         assertNotNull(new AuthService("data/users.txt"));
     }
 
     @Test
-    public void should_login_user() throws FileNotFoundException {
+    public void shouldLoginUser() throws FileNotFoundException {
         assertTrue(new AuthService("data/users.txt").login("ddetoni", "1234"));
     }
 
     @Test
-    public void should_return_logged_user() throws FileNotFoundException {
+    public void shouldReturnLoggedUser() throws FileNotFoundException {
         AuthService auth = new AuthService("data/users.txt");
         auth.login("ddetoni", "1234");
 

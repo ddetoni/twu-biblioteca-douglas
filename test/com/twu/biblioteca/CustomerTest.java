@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class CustomerTest {
 
     @Test
-    public void should_return_customer_role() {
+    public void shouldReturnCustomerRole() {
         assertEquals(new Customer("ddetoni").getRole(), "customer");
     }
 }

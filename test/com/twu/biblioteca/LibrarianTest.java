@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class LibrarianTest {
 
     @Test
-    public void should_return_librarian_role() {
+    public void shouldReturnLibrarianRole() {
         assertEquals(new Librarian("ddetoni").getRole(), "librarian");
     }
 }
