@@ -26,28 +26,42 @@ public class BibliotecaApp {
     public User authentication() throws FileNotFoundException {
         Scanner reader = new Scanner(System.in);
 
-        System.out.println("Enter the username: ");
+        print("Enter the username: \n");
         String username = reader.next();
 
-        System.out.println("Enter the password: ");
+        print("Enter the password: \n");
         String password = reader.next();
 
         this.authService.login(username, password);
 
-        User loggedUser = this.authService.getLoggedUser();
-        return loggedUser;
+        return this.authService.getLoggedUser();
     }
 
-    public void menu() {
+    public void menu() throws Exception {
         Scanner reader = new Scanner(System.in);
 
-        System.out.println("Enter an option:");
+        print("Options:\n" +
+                "\t1 - List of all books.\n" +
+                "\t2 - Check-out book.\n" +
+                "\t0 - Quit\n");
+
+        print("Enter an option:\n");
         Integer option = reader.nextInt();
 
         switch(option)
         {
+            case 0:
+                print("Bye!\n");
+                //System.exit(0);
+                break;
             case 1:
                 print(this.lib.allBooks());
+                break;
+            case 2:
+                print("Enter the book ID:\n");
+                Integer id = reader.nextInt();
+
+                this.lib.checkoutBook(id);
                 break;
             default:
                 print("Select a valid option!\n");

@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import java.io.FileNotFoundException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 
 public class LibraryTest {
@@ -36,4 +35,23 @@ public class LibraryTest {
                 "The Agile Samurai | Jonathan Rasmusson | 2010 | Avaliable\n");
 
     }
+
+    @Test
+    public void shouldReturnABookByID() throws FileNotFoundException {
+        Library lib = new Library("data/books.txt");
+        lib.loadBookData();
+
+        assertEquals(lib.getBook(1).getClass(), Book.class);
+    }
+
+    @Test
+    public void shouldCheckOutABookByID() throws Exception {
+        Library lib = new Library("data/books.txt");
+        lib.loadBookData();
+
+        assertTrue(lib.checkoutBook(0));
+    }
+
+
+
 }

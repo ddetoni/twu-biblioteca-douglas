@@ -47,4 +47,27 @@ public class Library {
 
         return allBooks;
     }
+
+    public Book getBook(int id) {
+        try {
+            return this.books.get(id);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.print("That book is not available.\n");
+            return null;
+        }
+    }
+
+    public boolean checkoutBook(int id) throws Exception {
+        Book book;
+        try {
+            book = this.books.get(id);
+            book.checkoutBook();
+
+            System.out.print("Thank you! Enjoy the book.\n");
+            return true;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.print("That book is not available.\n");
+            return false;
+        }
+    }
 }
