@@ -45,7 +45,7 @@ public class BibliotecaAppTest {
                 "Enter an option:\n" +
                 "Name | Author | Year | Status\n" +
                 "Cem anos de solidão | Gabriel Garcia Marquez | 1967 | Avaliable\n" +
-                "The Agile Samurai | Jonathan Rasmusson | 2010 | Avaliable\n";
+                "The Agile Samurai | Jonathan Rasmusson | 2010 | Not Avaliable\n";
 
 
         menuOption(input, output);
@@ -64,7 +64,7 @@ public class BibliotecaAppTest {
     @Test
     public void shouldChooseTheCheckoutBookOptionFromMenu() throws Exception {
         String input = "2\n" +
-                "1\n";
+                "0\n";
         String output = getMenuOptions() +
                 "Enter an option:\n" +
                 "Enter the book ID:\n" +
@@ -81,6 +81,18 @@ public class BibliotecaAppTest {
                 "Enter an option:\n" +
                 "Enter the book ID:\n" +
                 "That book is not available.\n";
+
+        menuOption(input, output);
+    }
+
+    @Test
+    public void shouldChooseTheReturnBookOption() throws Exception {
+        String input = "3\n" +
+                "1\n";
+        String output = getMenuOptions() +
+                "Enter an option:\n" +
+                "Enter the book ID:\n" +
+                "Thank you for returning the book.\n";
 
         menuOption(input, output);
     }
@@ -104,6 +116,7 @@ public class BibliotecaAppTest {
         return "Options:\n" +
                 "\t1 - List of all books.\n" +
                 "\t2 - Check-out book.\n" +
+                "\t3 - Return book.\n" +
                 "\t0 - Quit\n";
     }
 

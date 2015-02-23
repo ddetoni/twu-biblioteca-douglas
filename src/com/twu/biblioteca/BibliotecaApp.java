@@ -39,10 +39,12 @@ public class BibliotecaApp {
 
     public void menu() throws Exception {
         Scanner reader = new Scanner(System.in);
+        Integer id;
 
         print("Options:\n" +
                 "\t1 - List of all books.\n" +
                 "\t2 - Check-out book.\n" +
+                "\t3 - Return book.\n" +
                 "\t0 - Quit\n");
 
         print("Enter an option:\n");
@@ -59,10 +61,17 @@ public class BibliotecaApp {
                 break;
             case 2:
                 print("Enter the book ID:\n");
-                Integer id = reader.nextInt();
+                id = reader.nextInt();
 
                 this.lib.checkoutBook(id);
                 break;
+            case 3:
+                print("Enter the book ID:\n");
+                id = reader.nextInt();
+
+                this.lib.returnBook(id);
+                break;
+
             default:
                 print("Select a valid option!\n");
         }

@@ -30,12 +30,14 @@ public class Library {
             String line = fileScanner.nextLine();
             String [] splitedLine = line.split(":");
 
-            addBook(splitedLine[0], splitedLine[1], splitedLine[2]);
+            addBook(splitedLine[0], splitedLine[1], splitedLine[2], splitedLine[3]);
         }
     }
 
-    private void addBook(String name, String author, String year) {
-        this.books.add(new Book(name, author, year, true));
+    public boolean addBook(String name, String author, String year, String statusText) {
+        boolean status = statusText.equals("true") ? true : false;
+
+        return this.books.add(new Book(name, author, year, status));
     }
 
     public String allBooks() {
@@ -67,6 +69,20 @@ public class Library {
             return true;
         } catch (IndexOutOfBoundsException e) {
             System.out.print("That book is not available.\n");
+            return false;
+        }
+    }
+
+    public boolean returnBook(int id) throws Exception {
+        Book book;
+        try {
+            book = this.books.get(id);
+            book.returnBook();
+
+            System.out.print("Thank you for returning the book.\n");
+            return true;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.print("That is not a valid book to return.\n");
             return false;
         }
     }

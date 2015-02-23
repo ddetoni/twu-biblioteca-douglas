@@ -32,7 +32,7 @@ public class LibraryTest {
         assertEquals(lib.allBooks(),
                 "Name | Author | Year | Status\n" +
                 "Cem anos de solidão | Gabriel Garcia Marquez | 1967 | Avaliable\n" +
-                "The Agile Samurai | Jonathan Rasmusson | 2010 | Avaliable\n");
+                "The Agile Samurai | Jonathan Rasmusson | 2010 | Not Avaliable\n");
 
     }
 
@@ -52,6 +52,22 @@ public class LibraryTest {
         assertTrue(lib.checkoutBook(0));
     }
 
+    @Test
+    public void shoudlReturnABookByID() throws Exception {
+        Library lib = new Library("data/books.txt");
+        lib.loadBookData();
+        lib.getBook(0).checkoutBook();
+
+        assertTrue(lib.returnBook(0));
+    }
+
+    @Test
+    public void shouldAddANewBook() throws FileNotFoundException {
+        Library lib = new Library("data/books.txt");
+        lib.loadBookData();
+
+        assertTrue(lib.addBook("Book 1", "D.D.", "2015", "false"));
+    }
 
 
 }
