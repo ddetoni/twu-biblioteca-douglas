@@ -70,7 +70,7 @@ public class Library {
 
             System.out.print("Thank you! Enjoy the book.\n");
             return true;
-        } catch (IndexOutOfBoundsException e) {
+        } catch (Exception e) {
             System.out.print("That book is not available.\n");
             return false;
         }
@@ -84,7 +84,7 @@ public class Library {
 
             System.out.print("Thank you for returning the book.\n");
             return true;
-        } catch (IndexOutOfBoundsException e) {
+        } catch (Exception e) {
             System.out.print("That is not a valid book to return.\n");
             return false;
         }
