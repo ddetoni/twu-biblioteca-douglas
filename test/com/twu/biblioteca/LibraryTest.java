@@ -30,10 +30,10 @@ public class LibraryTest {
         Library lib = new Library("data/books.txt");
         lib.loadBookData();
 
-        assertEquals(lib.printAllBooks(),
+        assertEquals(lib.allBooks(),
                 "Name | Author | Year | Status\n" +
-                "Cem anos de solidão | Gabriel Garcia Marquez | 1967 | Free\n" +
-                "The Agile Samurai | Jonathan Rasmusson | 2010 | Free\n");
+                "Cem anos de solidão | Gabriel Garcia Marquez | 1967 | Avaliable\n" +
+                "The Agile Samurai | Jonathan Rasmusson | 2010 | Avaliable\n");
 
     }
 }
