@@ -2,12 +2,12 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import java.io.FileNotFoundException;
 
-/**
- * Created by ddetoni on 2/20/15.
- */
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+
 public class LibraryTest {
 
     @Test
@@ -15,8 +15,13 @@ public class LibraryTest {
         assertNotNull(new Library("data/books.txt"));
     }
 
+    @Test(expected = FileNotFoundException.class)
+    public void shouldLoadBookData() throws FileNotFoundException {
+        new Library("data/cars.txt").loadBookData();
+    }
+
     @Test
-    public void shouldLoadBookData() {
-        assertTrue(new Library("data/books.txt").loadBookData());
+    public void shouldReturnTheTotalOfBooksLoaded() throws FileNotFoundException {
+        assertEquals(new Library("data/books.txt").loadBookData(), 2);
     }
 }
