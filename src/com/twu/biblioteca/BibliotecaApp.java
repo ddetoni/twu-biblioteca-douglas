@@ -8,8 +8,18 @@ public class BibliotecaApp {
     private AuthService authService;
     private Library lib;
 
-    public static void main(String[] args) {
-        System.out.println("Hello, world!");
+    public static void main(String[] args) throws Exception {
+        BibliotecaApp bibApp = new BibliotecaApp();
+
+        User loggedUser = bibApp.authentication();
+
+        if(loggedUser != null) {
+            bibApp.welcome(loggedUser);
+            while(true) {
+                bibApp.menu();
+            }
+        }
+
     }
 
     public BibliotecaApp() throws FileNotFoundException {
@@ -19,8 +29,9 @@ public class BibliotecaApp {
         this.lib.loadBookData();
     }
 
-    public String welcome() {
-        return "Hello.";
+    public void welcome(User loggedUser) {
+        print("Hello " + loggedUser.getUsername() + ". Welcome to the Bangalore Public Library Management System. " +
+                "You are authenticated as a " + loggedUser.getRole().toUpperCase() +".\n");
     }
 
     public User authentication() throws FileNotFoundException {

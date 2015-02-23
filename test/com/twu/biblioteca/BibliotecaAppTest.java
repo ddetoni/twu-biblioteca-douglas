@@ -16,7 +16,15 @@ public class BibliotecaAppTest {
 
     @Test
     public void shouldReturnAnWelcomeMessage() throws FileNotFoundException {
-        assertEquals(new BibliotecaApp().welcome(), "Hello.");
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Customer user = new Customer("ddetoni");
+
+        new BibliotecaApp().welcome(user);
+
+        assertEquals(outContent.toString(), "Hello ddetoni. Welcome to the Bangalore Public Library Management System. " +
+                "You are authenticated as a CUSTOMER.\n");
     }
 
     @Test
@@ -95,7 +103,6 @@ public class BibliotecaAppTest {
 
         menuOption(input, output);
     }
-
 
     private void menuOption(String input, String output) throws Exception {
         BibliotecaApp bibApp = new BibliotecaApp();
