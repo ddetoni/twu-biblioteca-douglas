@@ -16,7 +16,7 @@ public class Book {
     }
 
     public String getDetails() {
-        return this.name + " | " + this.author + " | " + this.year;
+        return this.name + " | " + this.author + " | " + this.year + " | " + (this.status ? "Free" : "Not Free");
     }
 
     public boolean isAvaliable() {

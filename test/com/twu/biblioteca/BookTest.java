@@ -14,7 +14,7 @@ public class BookTest {
 
     @Test
     public void shouldReturnBookDetails() {
-        assertEquals(new Book("book 1", "D. Detoni", "2014", true).getDetails(), "book 1 | D. Detoni | 2014");
+        assertEquals(new Book("book 1", "D. Detoni", "2014", true).getDetails(), "book 1 | D. Detoni | 2014 | Free");
     }
 
     @Test

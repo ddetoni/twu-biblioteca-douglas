@@ -37,4 +37,14 @@ public class Library {
     private void addBook(String name, String author, String year) {
         this.books.add(new Book(name, author, year, true));
     }
+
+    public String printAllBooks() {
+        String allBooks = "Name | Author | Year | Status\n";
+
+        for(int i=0; i < this.books.size(); i++) {
+            allBooks += this.books.get(i).getDetails() + "\n";
+        }
+
+        return allBooks;
+    }
 }

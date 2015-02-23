@@ -24,4 +24,16 @@ public class LibraryTest {
     public void shouldReturnTheTotalOfBooksLoaded() throws FileNotFoundException {
         assertEquals(new Library("data/books.txt").loadBookData(), 2);
     }
+
+    @Test
+    public void shouldPrintTheWholeBookList() throws FileNotFoundException {
+        Library lib = new Library("data/books.txt");
+        lib.loadBookData();
+
+        assertEquals(lib.printAllBooks(),
+                "Name | Author | Year | Status\n" +
+                "Cem anos de solidão | Gabriel Garcia Marquez | 1967 | Free\n" +
+                "The Agile Samurai | Jonathan Rasmusson | 2010 | Free\n");
+
+    }
 }
