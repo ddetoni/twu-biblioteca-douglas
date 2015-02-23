@@ -44,7 +44,10 @@ public class Library {
         String allBooks = "Name | Author | Year | Status\n";
 
         for(int i=0; i < this.books.size(); i++) {
-            allBooks += this.books.get(i).getDetails() + "\n";
+            Book book = this.books.get(i);
+            if(book.isAvaliable()) {
+                allBooks += book.getDetails() + "\n";
+            }
         }
 
         return allBooks;

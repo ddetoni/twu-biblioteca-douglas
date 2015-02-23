@@ -31,8 +31,7 @@ public class LibraryTest {
 
         assertEquals(lib.allBooks(),
                 "Name | Author | Year | Status\n" +
-                "Cem anos de solidão | Gabriel Garcia Marquez | 1967 | Avaliable\n" +
-                "The Agile Samurai | Jonathan Rasmusson | 2010 | Not Avaliable\n");
+                "Cem anos de solidão | Gabriel Garcia Marquez | 1967 | Avaliable\n");
 
     }
 
