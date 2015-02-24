@@ -15,9 +15,7 @@ public class BibliotecaApp {
 
         if(loggedUser != null) {
             bibApp.welcome(loggedUser);
-            while(true) {
-                bibApp.menu();
-            }
+            while(bibApp.menu()) {}
         }
 
     }
@@ -48,7 +46,7 @@ public class BibliotecaApp {
         return this.authService.getLoggedUser();
     }
 
-    public void menu() throws Exception {
+    public boolean menu() throws Exception {
         Scanner reader = new Scanner(System.in);
         Integer id;
 
@@ -65,8 +63,7 @@ public class BibliotecaApp {
         {
             case 0:
                 print("*** Bye! ***\n");
-                //System.exit(0);
-                break;
+                return false;
             case 1:
                 print(this.lib.allBooks());
                 break;
@@ -86,6 +83,7 @@ public class BibliotecaApp {
             default:
                 print("Select a valid option!\n");
         }
+        return true;
     }
 
     private void print(String text) {
