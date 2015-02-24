@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.sun.tools.javac.code.Attribute;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -49,5 +50,12 @@ public class BookTest {
     public void shouldThrowExceptionBookNotCheckout() throws Exception {
         Book book = new Book("book 1", "D. Detoni", "2014", true);
         book.returnBook();
+    }
+
+    @Test
+    public void shouldReturnAnArrayDetail() {
+        Book book = new Book("book 1", "D. Detoni", "2014", true);
+
+        assertEquals(book.getArrayDetails().size(), 4);
     }
 }

@@ -62,6 +62,7 @@ public class BibliotecaApp {
         switch(option)
         {
             case 0:
+                this.lib.saveData();
                 print("*** Bye! ***\n");
                 return false;
             case 1:

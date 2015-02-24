@@ -1,6 +1,8 @@
 package com.twu.biblioteca;
 
 
+import java.util.ArrayList;
+
 public class Book {
 
     private boolean status;
@@ -35,5 +37,16 @@ public class Book {
             this.status = true;
         } else throw new Exception("Book was not checkout.");
 
+    }
+
+    public ArrayList<String> getArrayDetails() {
+        ArrayList<String> details = new ArrayList<String>();
+
+        details.add(this.name);
+        details.add(this.author);
+        details.add(this.year);
+        details.add( (this.status ? "true" : "false") );
+
+        return details;
     }
 }

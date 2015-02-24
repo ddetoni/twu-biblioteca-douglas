@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -88,5 +90,18 @@ public class Library {
             System.out.print("*** That is not a valid book to return. ***\n");
             return false;
         }
+    }
+
+    public boolean saveData() throws FileNotFoundException, UnsupportedEncodingException {
+
+        PrintWriter writer = new PrintWriter(this.booksPath);
+
+        for(int i=0; i < this.books.size(); i++) {
+            ArrayList<String> details = this.books.get(i).getArrayDetails();
+            writer.println(details.get(0) + ":" + details.get(1) + ":" + details.get(2) + ":" + details.get(3));
+        }
+
+        writer.close();
+        return true;
     }
 }
