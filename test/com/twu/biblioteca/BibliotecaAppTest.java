@@ -51,8 +51,8 @@ public class BibliotecaAppTest {
         String input = "1\n";
         String output = getMenuOptions() +
                 "Enter an option:\n" +
-                "Name | Author | Year | Status\n" +
-                "Cem anos de solidão | Gabriel Garcia Marquez | 1967\n";
+                "\nID | Name | Author | Year | Status\n" +
+                "0 | Cem anos de solidão | Gabriel Garcia Marquez | 1967\n";
 
 
         menuOption(input, output);
@@ -63,7 +63,7 @@ public class BibliotecaAppTest {
         String input = "0\n";
         String output = getMenuOptions() +
                 "Enter an option:\n" +
-                "Bye!\n";
+                "*** Bye! ***\n";
 
         menuOption(input, output);
     }
@@ -75,7 +75,7 @@ public class BibliotecaAppTest {
         String output = getMenuOptions() +
                 "Enter an option:\n" +
                 "Enter the book ID:\n" +
-                "Thank you! Enjoy the book.\n";
+                "*** Thank you! Enjoy the book. ***\n";
 
         menuOption(input, output);
     }
@@ -87,7 +87,7 @@ public class BibliotecaAppTest {
         String output = getMenuOptions() +
                 "Enter an option:\n" +
                 "Enter the book ID:\n" +
-                "That book is not available.\n";
+                "*** That book is not available. ***\n";
 
         menuOption(input, output);
     }
@@ -99,7 +99,7 @@ public class BibliotecaAppTest {
         String output = getMenuOptions() +
                 "Enter an option:\n" +
                 "Enter the book ID:\n" +
-                "Thank you for returning the book.\n";
+                "*** Thank you for returning the book. ***\n";
 
         menuOption(input, output);
     }
@@ -119,7 +119,7 @@ public class BibliotecaAppTest {
     }
 
     private String getMenuOptions() {
-        return "Options:\n" +
+        return "\nOptions:\n" +
                 "\t1 - List of all books.\n" +
                 "\t2 - Check-out book.\n" +
                 "\t3 - Return book.\n" +

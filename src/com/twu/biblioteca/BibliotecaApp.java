@@ -52,7 +52,7 @@ public class BibliotecaApp {
         Scanner reader = new Scanner(System.in);
         Integer id;
 
-        print("Options:\n" +
+        print("\nOptions:\n" +
                 "\t1 - List of all books.\n" +
                 "\t2 - Check-out book.\n" +
                 "\t3 - Return book.\n" +
@@ -64,7 +64,7 @@ public class BibliotecaApp {
         switch(option)
         {
             case 0:
-                print("Bye!\n");
+                print("*** Bye! ***\n");
                 //System.exit(0);
                 break;
             case 1:

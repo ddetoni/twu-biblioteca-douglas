@@ -41,12 +41,12 @@ public class Library {
     }
 
     public String allBooks() {
-        String allBooks = "Name | Author | Year | Status\n";
+        String allBooks = "\nID | Name | Author | Year | Status\n";
 
         for(int i=0; i < this.books.size(); i++) {
             Book book = this.books.get(i);
             if(book.isAvaliable()) {
-                allBooks += book.getDetails() + "\n";
+                allBooks += i + " | " + book.getDetails() + "\n";
             }
         }
 
@@ -57,7 +57,7 @@ public class Library {
         try {
             return this.books.get(id);
         } catch (IndexOutOfBoundsException e) {
-            System.out.print("That book is not available.\n");
+            System.out.print("*** That book is not available. ***\n");
             return null;
         }
     }
@@ -68,10 +68,10 @@ public class Library {
             book = this.books.get(id);
             book.checkoutBook();
 
-            System.out.print("Thank you! Enjoy the book.\n");
+            System.out.print("*** Thank you! Enjoy the book. ***\n");
             return true;
         } catch (Exception e) {
-            System.out.print("That book is not available.\n");
+            System.out.print("*** That book is not available. ***\n");
             return false;
         }
     }
@@ -82,10 +82,10 @@ public class Library {
             book = this.books.get(id);
             book.returnBook();
 
-            System.out.print("Thank you for returning the book.\n");
+            System.out.print("*** Thank you for returning the book. ***\n");
             return true;
         } catch (Exception e) {
-            System.out.print("That is not a valid book to return.\n");
+            System.out.print("*** That is not a valid book to return. ***\n");
             return false;
         }
     }

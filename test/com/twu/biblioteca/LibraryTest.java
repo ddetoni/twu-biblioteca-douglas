@@ -30,8 +30,8 @@ public class LibraryTest {
         lib.loadBookData();
 
         assertEquals(lib.allBooks(),
-                "Name | Author | Year | Status\n" +
-                "Cem anos de solidão | Gabriel Garcia Marquez | 1967\n");
+                "\nID | Name | Author | Year | Status\n" +
+                "0 | Cem anos de solidão | Gabriel Garcia Marquez | 1967\n");
 
     }
 
