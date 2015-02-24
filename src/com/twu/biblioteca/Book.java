@@ -16,7 +16,7 @@ public class Book {
     }
 
     public String getDetails() {
-        return this.name + " | " + this.author + " | " + this.year + " | " + (this.status ? "Avaliable" : "Not Avaliable");
+        return this.name + " | " + this.author + " | " + this.year;
     }
 
     public boolean isAvaliable() {

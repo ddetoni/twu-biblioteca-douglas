@@ -52,7 +52,7 @@ public class BibliotecaAppTest {
         String output = getMenuOptions() +
                 "Enter an option:\n" +
                 "Name | Author | Year | Status\n" +
-                "Cem anos de solidão | Gabriel Garcia Marquez | 1967 | Avaliable\n";
+                "Cem anos de solidão | Gabriel Garcia Marquez | 1967\n";
 
 
         menuOption(input, output);
