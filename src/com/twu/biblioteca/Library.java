@@ -1,39 +1,14 @@
 package com.twu.biblioteca;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Library {
 
-    private String booksPath;
     private ArrayList<Book> books;
 
-    public Library(String path) {
-        this.booksPath = path;
-        this.books = new ArrayList<Book>();
-    }
-
-    public int loadBookData() throws FileNotFoundException {
-
-        Scanner fileScanner = new Scanner(new File(this.booksPath));
-
-        parseData(fileScanner);
-
-        return this.books.size();
-    }
-
-    private void parseData(Scanner fileScanner) {
-        while(fileScanner.hasNextLine()) {
-            String line = fileScanner.nextLine();
-            String [] splitedLine = line.split(":");
-
-            addBook(splitedLine[0], splitedLine[1], splitedLine[2], splitedLine[3]);
-        }
+    public Library(ArrayList<Book> books) {
+        this.books = books;
     }
 
     public boolean addBook(String name, String author, String year, String statusText) {
@@ -92,15 +67,11 @@ public class Library {
         }
     }
 
-    public boolean saveData() throws FileNotFoundException, UnsupportedEncodingException {
+    public int totalOfBooks() {
+        return this.books.size();
+    }
 
-        PrintWriter writer = new PrintWriter(this.booksPath);
-
-        for(Book book: this.books) {
-            writer.println(book.getDetails(":", true));
-        }
-
-        writer.close();
-        return true;
+    public ArrayList<Book> getBooks() {
+        return books;
     }
 }

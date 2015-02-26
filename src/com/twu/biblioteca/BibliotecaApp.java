@@ -1,15 +1,18 @@
 package com.twu.biblioteca;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BibliotecaApp {
 
+    private DataService dataService;
     private AuthService authService;
     private Library lib;
 
     public static void main(String[] args) throws Exception {
-        BibliotecaApp bibApp = new BibliotecaApp();
+        DataService dataService = new DataService();
+        BibliotecaApp bibApp = new BibliotecaApp(dataService);
 
         User loggedUser = bibApp.authentication();
 
@@ -20,11 +23,12 @@ public class BibliotecaApp {
 
     }
 
-    public BibliotecaApp() throws FileNotFoundException {
+    public BibliotecaApp(DataService dataService) throws FileNotFoundException {
         this.authService = new AuthService("data/users.txt");
-        this.lib = new Library("data/books.txt");
+        this.dataService = dataService;
 
-        this.lib.loadBookData();
+        ArrayList<Book> books = dataService.load("data/books.txt");
+        this.lib = new Library(books);
     }
 
     public void welcome(User loggedUser) {
@@ -62,7 +66,7 @@ public class BibliotecaApp {
         switch(option)
         {
             case 0:
-                this.lib.saveData();
+                dataService.save("data/books.txt", lib.getBooks());
                 print("*** Bye! ***\n");
                 return false;
             case 1:

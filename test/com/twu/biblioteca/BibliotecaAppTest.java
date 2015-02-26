@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -13,6 +14,16 @@ import static org.junit.Assert.assertNotNull;
 
 public class BibliotecaAppTest {
 
+    private DataService dataService;
+    private BibliotecaApp bibApp;
+
+    @Before
+    public void setUp() throws FileNotFoundException {
+        dataService = new DataService();
+        bibApp = new BibliotecaApp(dataService);
+    }
+
+
     @Test
     public void shouldReturnAnWelcomeMessage() throws FileNotFoundException {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
@@ -20,7 +31,7 @@ public class BibliotecaAppTest {
 
         Customer user = new Customer("ddetoni");
 
-        new BibliotecaApp().welcome(user);
+        bibApp.welcome(user);
 
         assertEquals(outContent.toString(), "Hello ddetoni. Welcome to the Bangalore Public Library Management System. " +
                 "You are authenticated as a CUSTOMER.\n");
@@ -28,7 +39,6 @@ public class BibliotecaAppTest {
 
     @Test
     public void shouldAuthenticateTheUser() throws FileNotFoundException {
-        BibliotecaApp bibApp = new BibliotecaApp();
 
         ByteArrayInputStream in = new ByteArrayInputStream("ddetoni\n1234\n".getBytes());
         System.setIn(in);
@@ -104,7 +114,6 @@ public class BibliotecaAppTest {
     }
 
     private void menuOption(String input, String output) throws Exception {
-        BibliotecaApp bibApp = new BibliotecaApp();
 
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
