@@ -3,11 +3,20 @@ package com.twu.biblioteca;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-/**
- * Created by ddetoni on 2/20/15.
- */
+
 public class LibrarianTest {
+
+    @Test
+    public void shouldReturnANewUser() {
+        assertNotNull(new Librarian("ddetoni"));
+    }
+
+    @Test
+    public void shouldReturnUsername() {
+        assertEquals(new Librarian("ddetoni").getUsername(), "ddetoni");
+    }
 
     @Test
     public void shouldReturnLibrarianRole() {

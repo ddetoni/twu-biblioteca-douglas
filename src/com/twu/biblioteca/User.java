@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
 
-public class User {
+abstract class User {
     private String username;
 
 
