@@ -48,7 +48,7 @@ public class Library {
         for(int i=0; i < this.books.size(); i++) {
             Book book = this.books.get(i);
             if(book.isAvaliable()) {
-                allBooks += i + " | " + book.getDetails() + "\n";
+                allBooks += i + " | " + book.getDetails(" | ", false) + "\n";
             }
         }
 

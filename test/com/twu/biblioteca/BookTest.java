@@ -14,8 +14,13 @@ public class BookTest {
     }
 
     @Test
-    public void shouldReturnBookDetails() {
-        assertEquals(new Book("book 1", "D. Detoni", "2014", true).getDetails(), "book 1 | D. Detoni | 2014");
+    public void shouldReturnBookDetailsWithoutAvaliability() {
+        assertEquals(new Book("book 1", "D. Detoni", "2014", true).getDetails(" | ", false), "book 1 | D. Detoni | 2014");
+    }
+
+    @Test
+    public void shouldReturnBookDetailsWithAvaliability() {
+        assertEquals(new Book("book 1", "D. Detoni", "2014", false).getDetails(" | ", true), "book 1 | D. Detoni | 2014 | false");
     }
 
     @Test

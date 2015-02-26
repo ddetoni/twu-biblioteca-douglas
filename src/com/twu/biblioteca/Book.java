@@ -17,8 +17,13 @@ public class Book {
         this.status = status;
     }
 
-    public String getDetails() {
-        return this.name + " | " + this.author + " | " + this.year;
+    public String getDetails(String separator, boolean showAvailability) {
+
+        if(showAvailability) {
+            return this.name + separator + this.author + separator + this.year + separator + this.status;
+        } else {
+            return this.name + separator + this.author + separator + this.year;
+        }
     }
 
     public boolean isAvaliable() {
