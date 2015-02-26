@@ -21,20 +21,26 @@ import static org.mockito.Mockito.when;
 public class BibliotecaAppTest {
 
     private DataService dataService;
+    private AuthService authService;
     private BibliotecaApp bibApp;
 
     @Before
     public void setUp() throws FileNotFoundException {
         dataService = mock(DataService.class);
+        authService = mock(AuthService.class);
 
         ArrayList<Book> books = new ArrayList<Book>();
         books.add(new Book("Cem anos de solidão", "Gabriel Garcia Marquez", "1967", true));
         books.add(new Book("The Agile Samurai", "Jonathan Rasmusson", "2010", false));
 
+        Customer customer = new Customer("ddetoni", "Douglas Detoni", "ddetoni@thoughtworks.com", "05381452897");
+
         when(dataService.load(anyString())).thenReturn(books);
         when(dataService.save(anyString(), eq(books))).thenReturn(true);
 
-        bibApp = new BibliotecaApp(dataService);
+        when(authService.getLoggedUser()).thenReturn(customer);
+
+        bibApp = new BibliotecaApp(dataService, authService);
     }
 
     @Test
@@ -42,7 +48,7 @@ public class BibliotecaAppTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
-        Customer user = new Customer("ddetoni");
+        Customer user = new Customer("ddetoni", "", "", "");
 
         bibApp.welcome(user);
 
@@ -56,7 +62,9 @@ public class BibliotecaAppTest {
         ByteArrayInputStream in = new ByteArrayInputStream("ddetoni\n1234\n".getBytes());
         System.setIn(in);
 
-        assertNotNull(bibApp.authentication());
+        BibliotecaApp biblioteca = new BibliotecaApp(new DataService(), new AuthService("data/users.txt"));
+
+        assertNotNull(biblioteca.authentication());
     }
 
     @Test
@@ -126,6 +134,19 @@ public class BibliotecaAppTest {
         menuOption(input, output);
     }
 
+    @Test
+    public void shouldChooseTheMyInfoOption() throws Exception {
+        String input = "6\n";
+        String output = getMenuOptions() +
+                "Enter an option:\n" +
+                "*** My Info ***\n" +
+                "Name: Douglas Detoni\n" +
+                "Email: ddetoni@thoughtworks.com\n" +
+                "Phone Number: 05381452897\n";
+
+        menuOption(input, output);
+    }
+
     private void menuOption(String input, String output) throws Exception {
 
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
@@ -144,6 +165,7 @@ public class BibliotecaAppTest {
                 "\t1 - List of all books.\n" +
                 "\t2 - Check-out book.\n" +
                 "\t3 - Return book.\n" +
+                "\t6 - My Info.\n" +
                 "\t0 - Quit\n";
     }
 

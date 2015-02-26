@@ -26,7 +26,7 @@ public class AuthService {
             if(splitedLine[0].equals(username) && splitedLine[2].equals(password)) {
 
                 if(splitedLine[1].equals("customer")) {
-                    this.loggedUser = new Customer(username);
+                    this.loggedUser = new Customer(username, splitedLine[3], splitedLine[4], splitedLine[5]);
                 } else if(splitedLine[1].equals("librarian")) {
                     this.loggedUser = new Librarian(username);
                 }

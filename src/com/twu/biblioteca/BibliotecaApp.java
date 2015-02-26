@@ -12,7 +12,9 @@ public class BibliotecaApp {
 
     public static void main(String[] args) throws Exception {
         DataService dataService = new DataService();
-        BibliotecaApp bibApp = new BibliotecaApp(dataService);
+        AuthService authService = new AuthService("data/users.txt");
+
+        BibliotecaApp bibApp = new BibliotecaApp(dataService, authService);
 
         User loggedUser = bibApp.authentication();
 
@@ -23,8 +25,8 @@ public class BibliotecaApp {
 
     }
 
-    public BibliotecaApp(DataService dataService) throws FileNotFoundException {
-        this.authService = new AuthService("data/users.txt");
+    public BibliotecaApp(DataService dataService, AuthService authService) throws FileNotFoundException {
+        this.authService = authService;
         this.dataService = dataService;
 
         ArrayList<Book> books = dataService.load("data/books.txt");
@@ -58,6 +60,7 @@ public class BibliotecaApp {
                 "\t1 - List of all books.\n" +
                 "\t2 - Check-out book.\n" +
                 "\t3 - Return book.\n" +
+                "\t6 - My Info.\n" +
                 "\t0 - Quit\n");
 
         print("Enter an option:\n");
@@ -84,7 +87,12 @@ public class BibliotecaApp {
 
                 this.lib.returnBook(id);
                 break;
+            case 6:
+                print("*** My Info ***\n");
+                Customer loggedUser = (Customer) authService.getLoggedUser();
 
+                print(loggedUser.getMyInfo());
+                break;
             default:
                 print("Select a valid option!\n");
         }

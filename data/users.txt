@@ -1,2 +1,2 @@
-ddetoni:customer:1234
+ddetoni:customer:1234:Douglas Detoni:ddetoni@thoughtworks.com:05381452897
 detoni:librarian:321
