@@ -53,15 +53,17 @@ public class BibliotecaApp {
     }
 
     public boolean menu() throws Exception {
+        User loggedUser = authService.getLoggedUser();
+
         Scanner reader = new Scanner(System.in);
         Integer id;
 
-        print("\nOptions:\n" +
-                "\t1 - List of all books.\n" +
-                "\t2 - Check-out book.\n" +
-                "\t3 - Return book.\n" +
-                "\t6 - My Info.\n" +
-                "\t0 - Quit\n");
+        if(isCustomer(loggedUser)) {
+            print(getCustomerMenuOptions());
+        } else {
+            print(getLibrarianMenuOptions());
+        }
+
 
         print("Enter an option:\n");
         Integer option = reader.nextInt();
@@ -69,34 +71,86 @@ public class BibliotecaApp {
         switch(option)
         {
             case 0:
-                dataService.save("data/books.txt", lib.getBooks());
-                print("*** Bye! ***\n");
+                quitOption();
                 return false;
+
             case 1:
-                print(this.lib.allBooks());
+                listBooksOption();
                 break;
+
             case 2:
-                print("Enter the book ID:\n");
-                id = reader.nextInt();
-
-                this.lib.checkoutBook(id);
+                checkoutBookOption(reader);
                 break;
+
             case 3:
-                print("Enter the book ID:\n");
-                id = reader.nextInt();
-
-                this.lib.returnBook(id);
+                returnBookOption(reader);
                 break;
+
             case 6:
-                print("*** My Info ***\n");
-                Customer loggedUser = (Customer) authService.getLoggedUser();
-
-                print(loggedUser.getMyInfo());
+                myInfoOption(loggedUser);
                 break;
+
             default:
                 print("Select a valid option!\n");
         }
         return true;
+    }
+
+    private void quitOption() throws FileNotFoundException {
+        dataService.save("data/books.txt", lib.getBooks());
+        print("*** Bye! ***\n");
+    }
+
+    private void listBooksOption() {
+        print(this.lib.allBooks());
+    }
+
+    private void checkoutBookOption(Scanner reader) throws Exception {
+        Integer id;
+        print("Enter the book ID:\n");
+        id = reader.nextInt();
+
+        this.lib.checkoutBook(id);
+    }
+
+    private void returnBookOption(Scanner reader) throws Exception {
+        Integer id;
+        print("Enter the book ID:\n");
+        id = reader.nextInt();
+
+        this.lib.returnBook(id);
+    }
+
+    private void myInfoOption(User loggedUser) {
+        if(isCustomer(loggedUser)) {
+            print("*** My Info ***\n");
+            Customer loggedCustomer = (Customer) loggedUser;
+
+            print(loggedCustomer.getMyInfo());
+        } else {
+            print("Select a valid option!\n");
+        }
+    }
+
+    private boolean isCustomer(User loggedUser) {
+        return loggedUser.getRole().equals("customer");
+    }
+
+    private String getCustomerMenuOptions() {
+        return "\nOptions:\n" +
+                "\t1 - List of all books.\n" +
+                "\t2 - Check-out book.\n" +
+                "\t3 - Return book.\n" +
+                "\t6 - My Info.\n" +
+                "\t0 - Quit\n";
+    }
+
+    private String getLibrarianMenuOptions() {
+        return "\nOptions:\n" +
+                "\t1 - List of all books.\n" +
+                "\t2 - Check-out book.\n" +
+                "\t3 - Return book.\n" +
+                "\t0 - Quit\n";
     }
 
     private void print(String text) {

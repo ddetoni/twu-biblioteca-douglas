@@ -9,7 +9,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -70,7 +69,7 @@ public class BibliotecaAppTest {
     @Test
     public void shouldChooseAFailOptionFromMenu() throws Exception {
         String input = "123\n";
-        String output = getMenuOptions() +
+        String output = getCustomerMenuOptions() +
                 "Enter an option:\n" + "Select a valid option!\n";
 
         menuOption(input, output);
@@ -79,7 +78,7 @@ public class BibliotecaAppTest {
     @Test
     public void shouldChooseTheListBooksOption() throws Exception {
         String input = "1\n";
-        String output = getMenuOptions() +
+        String output = getCustomerMenuOptions() +
                 "Enter an option:\n" +
                 "\nID | Name | Author | Year | Status\n" +
                 "0 | Cem anos de solidão | Gabriel Garcia Marquez | 1967\n";
@@ -91,7 +90,7 @@ public class BibliotecaAppTest {
     @Test
     public void shouldChooseTheQuitOptionFromMenu() throws Exception {
         String input = "0\n";
-        String output = getMenuOptions() +
+        String output = getCustomerMenuOptions() +
                 "Enter an option:\n" +
                 "*** Bye! ***\n";
 
@@ -102,7 +101,7 @@ public class BibliotecaAppTest {
     public void shouldChooseTheCheckoutBookOptionFromMenu() throws Exception {
         String input = "2\n" +
                 "0\n";
-        String output = getMenuOptions() +
+        String output = getCustomerMenuOptions() +
                 "Enter an option:\n" +
                 "Enter the book ID:\n" +
                 "*** Thank you! Enjoy the book. ***\n";
@@ -114,7 +113,7 @@ public class BibliotecaAppTest {
     public void shouldChooseTheCheckoutBookOptionWithWrongID() throws Exception {
         String input = "2\n" +
                 "1234\n";
-        String output = getMenuOptions() +
+        String output = getCustomerMenuOptions() +
                 "Enter an option:\n" +
                 "Enter the book ID:\n" +
                 "*** That book is not available. ***\n";
@@ -126,7 +125,7 @@ public class BibliotecaAppTest {
     public void shouldChooseTheReturnBookOption() throws Exception {
         String input = "3\n" +
                 "1\n";
-        String output = getMenuOptions() +
+        String output = getCustomerMenuOptions() +
                 "Enter an option:\n" +
                 "Enter the book ID:\n" +
                 "*** Thank you for returning the book. ***\n";
@@ -137,12 +136,24 @@ public class BibliotecaAppTest {
     @Test
     public void shouldChooseTheMyInfoOption() throws Exception {
         String input = "6\n";
-        String output = getMenuOptions() +
+        String output = getCustomerMenuOptions() +
                 "Enter an option:\n" +
                 "*** My Info ***\n" +
                 "Name: Douglas Detoni\n" +
                 "Email: ddetoni@thoughtworks.com\n" +
                 "Phone Number: 05381452897\n";
+
+        menuOption(input, output);
+    }
+
+    @Test
+    public void shouldNotShowTheMyInfoOption() throws Exception {
+        when(authService.getLoggedUser()).thenReturn(new Librarian("detoni"));
+
+        String input = "0\n";
+        String output = getLibrarianMenuOptions() +
+                "Enter an option:\n" +
+                "*** Bye! ***\n";
 
         menuOption(input, output);
     }
@@ -160,12 +171,20 @@ public class BibliotecaAppTest {
         assertEquals(outContent.toString(), output);
     }
 
-    private String getMenuOptions() {
+    private String getCustomerMenuOptions() {
         return "\nOptions:\n" +
                 "\t1 - List of all books.\n" +
                 "\t2 - Check-out book.\n" +
                 "\t3 - Return book.\n" +
                 "\t6 - My Info.\n" +
+                "\t0 - Quit\n";
+    }
+
+    private String getLibrarianMenuOptions() {
+        return "\nOptions:\n" +
+                "\t1 - List of all books.\n" +
+                "\t2 - Check-out book.\n" +
+                "\t3 - Return book.\n" +
                 "\t0 - Quit\n";
     }
 
