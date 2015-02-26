@@ -96,9 +96,8 @@ public class Library {
 
         PrintWriter writer = new PrintWriter(this.booksPath);
 
-        for(int i=0; i < this.books.size(); i++) {
-            ArrayList<String> details = this.books.get(i).getArrayDetails();
-            writer.println(details.get(0) + ":" + details.get(1) + ":" + details.get(2) + ":" + details.get(3));
+        for(Book book: this.books) {
+            writer.println(book.getDetails(":", true));
         }
 
         writer.close();
