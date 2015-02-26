@@ -17,9 +17,9 @@ public class DataService {
             String line = fileScanner.nextLine();
             String [] splitedLine = line.split(":");
 
-            boolean avaliability = (splitedLine[3]).equals("true") ? true : false;
+            boolean availability = (splitedLine[3]).equals("true");
 
-            books.add(new Book(splitedLine[0], splitedLine[1], splitedLine[2], avaliability));
+            books.add(new Book(splitedLine[0], splitedLine[1], splitedLine[2], availability));
         }
 
         return books;

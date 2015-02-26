@@ -8,9 +8,15 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class BibliotecaAppTest {
 
@@ -19,10 +25,17 @@ public class BibliotecaAppTest {
 
     @Before
     public void setUp() throws FileNotFoundException {
-        dataService = new DataService();
+        dataService = mock(DataService.class);
+
+        ArrayList<Book> books = new ArrayList<Book>();
+        books.add(new Book("Cem anos de solidão", "Gabriel Garcia Marquez", "1967", true));
+        books.add(new Book("The Agile Samurai", "Jonathan Rasmusson", "2010", false));
+
+        when(dataService.load(anyString())).thenReturn(books);
+        when(dataService.save(anyString(), eq(books))).thenReturn(true);
+
         bibApp = new BibliotecaApp(dataService);
     }
-
 
     @Test
     public void shouldReturnAnWelcomeMessage() throws FileNotFoundException {
