@@ -34,14 +34,14 @@ public class BibliotecaApp {
     }
 
     public void welcome(User loggedUser) {
-        print("Hello " + loggedUser.getUsername() + ". Welcome to the Bangalore Public Library Management System. " +
+        print("Hello " + loggedUser.getIdentifier() + ". Welcome to the Bangalore Public Library Management System. " +
                 "You are authenticated as a " + loggedUser.getRole().toUpperCase() +".\n");
     }
 
     public User authentication() throws FileNotFoundException {
         Scanner reader = new Scanner(System.in);
 
-        print("Enter the username: \n");
+        print("Enter the identifier: \n");
         String username = reader.next();
 
         print("Enter the password: \n");

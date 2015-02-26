@@ -14,8 +14,8 @@ public class LibrarianTest {
     }
 
     @Test
-    public void shouldReturnUsername() {
-        assertEquals(new Librarian("ddetoni").getUsername(), "ddetoni");
+    public void shouldReturnIdentifier() {
+        assertEquals(new Librarian("ddetoni").getIdentifier(), "ddetoni");
     }
 
     @Test

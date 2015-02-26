@@ -58,7 +58,7 @@ public class BibliotecaAppTest {
     @Test
     public void shouldAuthenticateTheUser() throws FileNotFoundException {
 
-        ByteArrayInputStream in = new ByteArrayInputStream("ddetoni\n1234\n".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("123-4567\n1234\n".getBytes());
         System.setIn(in);
 
         BibliotecaApp biblioteca = new BibliotecaApp(new DataService(), new AuthService("data/users.txt"));

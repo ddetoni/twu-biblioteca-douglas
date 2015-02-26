@@ -2,15 +2,15 @@ package com.twu.biblioteca;
 
 
 abstract class User {
-    private String username;
+    private String identifier;
 
 
-    public User(String username) {
-        this.username = username;
+    public User(String identifier) {
+        this.identifier = identifier;
     };
 
-    public String getUsername() {
-        return this.username;
+    public String getIdentifier() {
+        return this.identifier;
     }
 
 
