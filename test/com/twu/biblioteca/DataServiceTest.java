@@ -25,7 +25,7 @@ public class DataServiceTest {
     @Test
     public void shouldSaveData() throws FileNotFoundException {
         ArrayList<Book> books = new ArrayList<Book>();
-        Book book = new Book("Book 1", "D.D.", "2015", false);
+        Book book = new Book("Book 1", "D.D.", "2015");
 
         books.add(book);
 

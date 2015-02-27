@@ -14,7 +14,7 @@ public class Library {
     public boolean addBook(String name, String author, String year, String statusText) {
         boolean status = statusText.equals("true") ? true : false;
 
-        return this.books.add(new Book(name, author, year, status));
+        return this.books.add(new Book(name, author, year));
     }
 
     public String allBooks() {
@@ -22,7 +22,7 @@ public class Library {
 
         for(int i=0; i < this.books.size(); i++) {
             Book book = this.books.get(i);
-            if(book.isAvaliable()) {
+            if(book.isAvailable()) {
                 allBooks += i + " | " + book.getDetails(" | ", false) + "\n";
             }
         }
@@ -43,7 +43,7 @@ public class Library {
         Book book;
         try {
             book = this.books.get(id);
-            book.checkoutBook();
+            book.setAvailability(false);
 
             System.out.print("*** Thank you! Enjoy the book. ***\n");
             return true;
@@ -57,7 +57,7 @@ public class Library {
         Book book;
         try {
             book = this.books.get(id);
-            book.returnBook();
+            book.setAvailability(true);
 
             System.out.print("*** Thank you for returning the book. ***\n");
             return true;

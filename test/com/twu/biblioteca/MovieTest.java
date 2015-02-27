@@ -16,7 +16,7 @@ public class MovieTest {
     public void shouldReturnTrueOnIsAvaliableMethod() {
         Movie movie = new Movie("Matrix", "1999", "The Wachowski Brothers", "9");
 
-        assertTrue(movie.IsAvailable());
+        assertTrue(movie.isAvailable());
     }
 
     @Test
@@ -24,7 +24,7 @@ public class MovieTest {
         Movie movie = new Movie("Matrix", "1999", "The Wachowski Brothers", "9");
         movie.setAvailability(false);
 
-        assertFalse(movie.IsAvailable());
+        assertFalse(movie.isAvailable());
     }
 
     @Test

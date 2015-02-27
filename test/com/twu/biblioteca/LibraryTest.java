@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.FileNotFoundException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -18,7 +17,7 @@ public class LibraryTest {
     @Before
     public void setUp() {
         books = new ArrayList<Book>();
-        Book book = new Book("Book 1", "D.D.", "2015", true);
+        Book book = new Book("Book 1", "D.D.", "2015");
 
         books.add(book);
 
@@ -55,7 +54,7 @@ public class LibraryTest {
 
     @Test
     public void shoudlReturnABookByID() throws Exception {
-        lib.getBook(0).checkoutBook();
+        lib.getBook(0).setAvailability(false);
 
         assertTrue(lib.returnBook(0));
     }

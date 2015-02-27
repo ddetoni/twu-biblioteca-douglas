@@ -8,7 +8,7 @@ abstract class Item {
         this.availability = true;
     }
 
-    public boolean IsAvailable() {
+    public boolean isAvailable() {
         return this.availability;
     }
 

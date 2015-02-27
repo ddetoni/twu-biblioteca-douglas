@@ -29,8 +29,10 @@ public class BibliotecaAppTest {
         authService = mock(AuthService.class);
 
         ArrayList<Book> books = new ArrayList<Book>();
-        books.add(new Book("Cem anos de solidão", "Gabriel Garcia Marquez", "1967", true));
-        books.add(new Book("The Agile Samurai", "Jonathan Rasmusson", "2010", false));
+        books.add(new Book("Cem anos de solidão", "Gabriel Garcia Marquez", "1967"));
+        books.add(new Book("The Agile Samurai", "Jonathan Rasmusson", "2010"));
+
+        books.get(1).setAvailability(false);
 
         Customer customer = new Customer("ddetoni", "Douglas Detoni", "ddetoni@thoughtworks.com", "05381452897");
 

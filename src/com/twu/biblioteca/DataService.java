@@ -19,7 +19,10 @@ public class DataService {
 
             boolean availability = (splitedLine[3]).equals("true");
 
-            books.add(new Book(splitedLine[0], splitedLine[1], splitedLine[2], availability));
+            Book book = new Book(splitedLine[0], splitedLine[1], splitedLine[2]);
+            book.setAvailability(availability);
+
+            books.add(book);
         }
 
         return books;
