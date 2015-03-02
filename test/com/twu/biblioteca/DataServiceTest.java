@@ -31,4 +31,9 @@ public class DataServiceTest {
 
         assertTrue(new DataService().save("data/books1_test.txt", books));
     }
+
+    @Test
+    public void shouldLoadMovieData() throws FileNotFoundException {
+        assertEquals(new DataService().loadMovies("data/movies_test.txt").size(), 1);
+    }
 }

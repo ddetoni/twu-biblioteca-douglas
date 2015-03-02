@@ -38,4 +38,23 @@ public class DataService {
 
         return true;
     }
+
+    public ArrayList<Movie> loadMovies(String path) throws FileNotFoundException {
+        Scanner fileScanner = new Scanner(new File(path));
+        ArrayList<Movie> movies = new ArrayList<Movie>();
+
+        while(fileScanner.hasNextLine()) {
+            String line = fileScanner.nextLine();
+            String [] splitedLine = line.split(":");
+
+            boolean availability = (splitedLine[4]).equals("true");
+
+            Movie movie = new Movie(splitedLine[0], splitedLine[1], splitedLine[2], splitedLine[3]);
+            movie.setAvailability(availability);
+
+            movies.add(movie);
+        }
+
+        return movies;
+    }
 }
