@@ -36,7 +36,7 @@ public class BibliotecaAppTest {
 
         Customer customer = new Customer("ddetoni", "Douglas Detoni", "ddetoni@thoughtworks.com", "05381452897");
 
-        when(dataService.load(anyString())).thenReturn(books);
+        when(dataService.loadBooks(anyString())).thenReturn(books);
         when(dataService.save(anyString(), eq(books))).thenReturn(true);
 
         when(authService.getLoggedUser()).thenReturn(customer);
@@ -160,6 +160,18 @@ public class BibliotecaAppTest {
         menuOption(input, output);
     }
 
+    @Test
+    public void shouldListAllMovies() throws Exception {
+        String input = "4\n";
+        String output = getCustomerMenuOptions() +
+                "Enter an option:\n" +
+                "ID | Name | Year | Director | Rating\n" +
+                "0 | Matrix | 1999 | The Wachowski Brothers | 9\n";
+
+
+        menuOption(input, output);
+    }
+
     private void menuOption(String input, String output) throws Exception {
 
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
@@ -178,6 +190,7 @@ public class BibliotecaAppTest {
                 "\t1 - List of all books.\n" +
                 "\t2 - Check-out book.\n" +
                 "\t3 - Return book.\n" +
+                "\t4 - List of all movies.\n" +
                 "\t6 - My Info.\n" +
                 "\t0 - Quit\n";
     }

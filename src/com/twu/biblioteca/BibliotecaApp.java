@@ -29,8 +29,9 @@ public class BibliotecaApp {
         this.authService = authService;
         this.dataService = dataService;
 
-        ArrayList<Book> books = dataService.load("data/books.txt");
-        this.lib = new Library(books);
+        ArrayList<Book> books = dataService.loadBooks("data/books.txt");
+        //ArrayList<Item> movies = dataService.loadBooks("data/movies.txt");
+        this.lib = new Library(books, new ArrayList<Movie>());
     }
 
     public void welcome(User loggedUser) {
@@ -84,6 +85,11 @@ public class BibliotecaApp {
 
             case 3:
                 returnBookOption(reader);
+                break;
+
+            case 4:
+                print("ID | Name | Year | Director | Rating\n" +
+                        "0 | Matrix | 1999 | The Wachowski Brothers | 9\n");
                 break;
 
             case 6:
@@ -141,6 +147,7 @@ public class BibliotecaApp {
                 "\t1 - List of all books.\n" +
                 "\t2 - Check-out book.\n" +
                 "\t3 - Return book.\n" +
+                "\t4 - List of all movies.\n" +
                 "\t6 - My Info.\n" +
                 "\t0 - Quit\n";
     }

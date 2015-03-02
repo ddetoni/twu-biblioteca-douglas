@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class DataService {
 
-    public ArrayList<Book> load(String path) throws FileNotFoundException {
+    public ArrayList<Book> loadBooks(String path) throws FileNotFoundException {
         Scanner fileScanner = new Scanner(new File(path));
         ArrayList<Book> books = new ArrayList<Book>();
 

@@ -6,14 +6,14 @@ import java.util.ArrayList;
 public class Library {
 
     private ArrayList<Book> books;
+    private ArrayList<Movie> movies;
 
-    public Library(ArrayList<Book> books) {
+    public Library(ArrayList<Book> books, ArrayList<Movie> movies) {
         this.books = books;
+        this.movies = movies;
     }
 
-    public boolean addBook(String name, String author, String year, String statusText) {
-        boolean status = statusText.equals("true") ? true : false;
-
+    public boolean addBook(String name, String author, String year) {
         return this.books.add(new Book(name, author, year));
     }
 
@@ -73,5 +73,18 @@ public class Library {
 
     public ArrayList<Book> getBooks() {
         return books;
+    }
+
+    public String allMovies() {
+        String allMovies = "\nID | Name | Year | Director | Rating\n";
+        Integer count = 0;
+
+        for(Movie movie : movies) {
+            if (movie.isAvailable()) {
+                allMovies += count++ + " | " + movie.getDetailsSeparatedBy(" | ") + "\n";
+            }
+        }
+
+        return allMovies;
     }
 }

@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 public class LibraryTest {
 
     private ArrayList<Book> books;
+    private ArrayList<Movie> movies;
     private Library lib;
 
     @Before
@@ -19,9 +20,13 @@ public class LibraryTest {
         books = new ArrayList<Book>();
         Book book = new Book("Book 1", "D.D.", "2015");
 
-        books.add(book);
+        movies = new ArrayList<Movie>();
+        Movie movie = new Movie("Matrix", "1999", "The Wachowski Brothers", "9");
 
-        lib = new Library(books);
+        books.add(book);
+        movies.add(movie);
+
+        lib = new Library(books, movies);
     }
 
     @Test
@@ -61,11 +66,18 @@ public class LibraryTest {
 
     @Test
     public void shouldAddANewBook() throws FileNotFoundException {
-        assertTrue(lib.addBook("Book 2", "D.D.", "2015", "false"));
+        assertTrue(lib.addBook("Book 2", "D.D.", "2015"));
     }
 
     @Test
     public void shouldReturnTheBooks() {
         assertEquals(lib.getBooks().getClass(), ArrayList.class);
+    }
+
+    @Test
+    public void shouldReturnAllTheMovies() {
+        assertEquals(lib.allMovies(), "\nID | Name | Year | Director | Rating\n" +
+                                        "0 | Matrix | 1999 | The Wachowski Brothers | 9\n");
+
     }
 }

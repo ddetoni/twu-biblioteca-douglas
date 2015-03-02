@@ -19,7 +19,7 @@ public class DataServiceTest {
 
     @Test
     public void shouldLoadData() throws FileNotFoundException {
-        assertEquals(new DataService().load("data/books_test.txt").size(), 2);
+        assertEquals(new DataService().loadBooks("data/books_test.txt").size(), 2);
     }
 
     @Test
