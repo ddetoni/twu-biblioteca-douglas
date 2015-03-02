@@ -34,6 +34,6 @@ public class DataServiceTest {
 
     @Test
     public void shouldLoadMovieData() throws FileNotFoundException {
-        assertEquals(new DataService().loadMovies("data/movies_test.txt").size(), 1);
+        assertEquals(new DataService().loadMovies("data/movies_test.txt").size(), 2);
     }
 }

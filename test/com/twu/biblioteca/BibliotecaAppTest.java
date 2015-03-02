@@ -31,12 +31,17 @@ public class BibliotecaAppTest {
         ArrayList<Book> books = new ArrayList<Book>();
         books.add(new Book("Cem anos de solidão", "Gabriel Garcia Marquez", "1967"));
         books.add(new Book("The Agile Samurai", "Jonathan Rasmusson", "2010"));
-
         books.get(1).setAvailability(false);
+
+        ArrayList<Movie> movies = new ArrayList<Movie>();
+        movies.add(new Movie("Matrix", "1999", "The Wachowski Brothers", "9"));
+        movies.add(new Movie("Birdman", "2014", "Alejandro González Iñárritu", "9"));
+        movies.get(1).setAvailability(false);
 
         Customer customer = new Customer("ddetoni", "Douglas Detoni", "ddetoni@thoughtworks.com", "05381452897");
 
         when(dataService.loadBooks(anyString())).thenReturn(books);
+        when(dataService.loadMovies(anyString())).thenReturn(movies);
         when(dataService.save(anyString(), eq(books))).thenReturn(true);
 
         when(authService.getLoggedUser()).thenReturn(customer);
@@ -164,7 +169,7 @@ public class BibliotecaAppTest {
     public void shouldListAllMovies() throws Exception {
         String input = "4\n";
         String output = getCustomerMenuOptions() +
-                "Enter an option:\n" +
+                "Enter an option:\n\n" +
                 "ID | Name | Year | Director | Rating\n" +
                 "0 | Matrix | 1999 | The Wachowski Brothers | 9\n";
 
@@ -179,7 +184,7 @@ public class BibliotecaAppTest {
         String output = getCustomerMenuOptions() +
                 "Enter an option:\n" +
                 "Enter the movie ID:\n" +
-                "*** That movie is not available. ***\n";
+                "*** Thank you! Enjoy the movie. ***\n";
 
         menuOption(input, output);
     }
@@ -191,7 +196,7 @@ public class BibliotecaAppTest {
         String output = getCustomerMenuOptions() +
                 "Enter an option:\n" +
                 "Enter the movie ID:\n" +
-                "*** That is not a valid movie to return. ***\n";
+                "*** Thank you for returning the movie. ***\n";
 
         menuOption(input, output);
     }

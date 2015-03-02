@@ -30,8 +30,8 @@ public class BibliotecaApp {
         this.dataService = dataService;
 
         ArrayList<Book> books = dataService.loadBooks("data/books.txt");
-        //ArrayList<Item> movies = dataService.loadBooks("data/movies.txt");
-        this.lib = new Library(books, new ArrayList<Movie>());
+        ArrayList<Movie> movies = dataService.loadMovies("data/movies.txt");
+        this.lib = new Library(books, movies);
     }
 
     public void welcome(User loggedUser) {
@@ -88,8 +88,8 @@ public class BibliotecaApp {
                 break;
 
             case 4:
-                print("ID | Name | Year | Director | Rating\n" +
-                        "0 | Matrix | 1999 | The Wachowski Brothers | 9\n");
+                print(lib.allMovies());
+
                 break;
             case 5:
                 print("Enter the movie ID:\n");
