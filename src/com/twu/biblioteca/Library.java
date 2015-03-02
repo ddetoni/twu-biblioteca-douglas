@@ -87,4 +87,32 @@ public class Library {
 
         return allMovies;
     }
+
+    public boolean checkoutMovie(int id) {
+        Movie movie;
+        try {
+            movie = this.movies.get(id);
+            movie.setAvailability(false);
+
+            System.out.print("*** Thank you! Enjoy the movie. ***\n");
+            return true;
+        } catch (Exception e) {
+            System.out.print("*** That movie is not available. ***\n");
+            return false;
+        }
+    }
+
+    public boolean returnMovie(int id) {
+        Movie movie;
+        try {
+            movie = this.movies.get(id);
+            movie.setAvailability(true);
+
+            System.out.print("*** Thank you for returning the movie. ***\n");
+            return true;
+        } catch (Exception e) {
+            System.out.print("*** That is not a valid movie to return. ***\n");
+            return false;
+        }
+    }
 }

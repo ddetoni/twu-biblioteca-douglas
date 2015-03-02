@@ -91,8 +91,21 @@ public class BibliotecaApp {
                 print("ID | Name | Year | Director | Rating\n" +
                         "0 | Matrix | 1999 | The Wachowski Brothers | 9\n");
                 break;
+            case 5:
+                print("Enter the movie ID:\n");
+                id = reader.nextInt();
+
+                this.lib.checkoutMovie(id);
+                break;
 
             case 6:
+                print("Enter the movie ID:\n");
+                id = reader.nextInt();
+
+                this.lib.returnMovie(id);
+                break;
+
+            case 7:
                 myInfoOption(loggedUser);
                 break;
 
@@ -148,7 +161,9 @@ public class BibliotecaApp {
                 "\t2 - Check-out book.\n" +
                 "\t3 - Return book.\n" +
                 "\t4 - List of all movies.\n" +
-                "\t6 - My Info.\n" +
+                "\t5 - Check-out movie.\n" +
+                "\t6 - Return movie.\n" +
+                "\t7 - My Info.\n" +
                 "\t0 - Quit\n";
     }
 
@@ -157,6 +172,8 @@ public class BibliotecaApp {
                 "\t1 - List of all books.\n" +
                 "\t2 - Check-out book.\n" +
                 "\t3 - Return book.\n" +
+                "\t5 - Check-out movie.\n" +
+                "\t6 - Return movie.\n" +
                 "\t0 - Quit\n";
     }
 

@@ -48,7 +48,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void shouldReturnABookByID() throws FileNotFoundException {
+    public void shouldReturnABook() throws FileNotFoundException {
         assertEquals(lib.getBook(0).getClass(), Book.class);
     }
 
@@ -78,6 +78,17 @@ public class LibraryTest {
     public void shouldReturnAllTheMovies() {
         assertEquals(lib.allMovies(), "\nID | Name | Year | Director | Rating\n" +
                                         "0 | Matrix | 1999 | The Wachowski Brothers | 9\n");
+    }
 
+    @Test
+    public void shouldCheckoutAMovieByID() {
+        assertTrue(lib.checkoutMovie(0));
+    }
+
+    @Test
+    public void shouldReturnAMovieByID() {
+        lib.getBook(0).setAvailability(false);
+
+        assertTrue(lib.returnMovie(0));
     }
 }

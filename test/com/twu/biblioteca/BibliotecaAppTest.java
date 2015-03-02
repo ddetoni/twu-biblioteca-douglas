@@ -137,7 +137,7 @@ public class BibliotecaAppTest {
 
     @Test
     public void shouldChooseTheMyInfoOption() throws Exception {
-        String input = "6\n";
+        String input = "7\n";
         String output = getCustomerMenuOptions() +
                 "Enter an option:\n" +
                 "*** My Info ***\n" +
@@ -172,6 +172,30 @@ public class BibliotecaAppTest {
         menuOption(input, output);
     }
 
+    @Test
+    public void shouldChooseTheCheckoutMovieOption() throws Exception {
+        String input = "5\n" +
+                "0\n";
+        String output = getCustomerMenuOptions() +
+                "Enter an option:\n" +
+                "Enter the movie ID:\n" +
+                "*** That movie is not available. ***\n";
+
+        menuOption(input, output);
+    }
+
+    @Test
+    public void shouldChooseTheReturnMovieOption() throws Exception {
+        String input = "6\n" +
+                "0\n";
+        String output = getCustomerMenuOptions() +
+                "Enter an option:\n" +
+                "Enter the movie ID:\n" +
+                "*** That is not a valid movie to return. ***\n";
+
+        menuOption(input, output);
+    }
+
     private void menuOption(String input, String output) throws Exception {
 
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
@@ -191,7 +215,9 @@ public class BibliotecaAppTest {
                 "\t2 - Check-out book.\n" +
                 "\t3 - Return book.\n" +
                 "\t4 - List of all movies.\n" +
-                "\t6 - My Info.\n" +
+                "\t5 - Check-out movie.\n" +
+                "\t6 - Return movie.\n" +
+                "\t7 - My Info.\n" +
                 "\t0 - Quit\n";
     }
 
@@ -200,6 +226,8 @@ public class BibliotecaAppTest {
                 "\t1 - List of all books.\n" +
                 "\t2 - Check-out book.\n" +
                 "\t3 - Return book.\n" +
+                "\t5 - Check-out movie.\n" +
+                "\t6 - Return movie.\n" +
                 "\t0 - Quit\n";
     }
 
