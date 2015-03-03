@@ -30,7 +30,7 @@ public class MovieTest {
     @Test
     public void shouldReturnTheCustomerThatCheckedOutTheMovie() {
         Movie movie = new Movie("Matrix", "1999", "The Wachowski Brothers", "9");
-        Customer customer = new Customer("", "", "", "");
+        Customer customer = new Customer("", "", "", "", "");
         movie.setCustomer(customer);
 
         assertEquals(movie.checkedOutBy(), customer);

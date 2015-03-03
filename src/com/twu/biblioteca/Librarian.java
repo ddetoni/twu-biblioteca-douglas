@@ -6,8 +6,8 @@ package com.twu.biblioteca;
 public class Librarian extends User {
 
 
-    public Librarian(String username) {
-        super(username);
+    public Librarian(String username, String password) {
+        super(username, password);
     }
 
     @Override

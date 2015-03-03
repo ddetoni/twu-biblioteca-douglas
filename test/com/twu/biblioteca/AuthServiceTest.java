@@ -18,17 +18,34 @@ public class AuthServiceTest {
 
     @Test
     public void shouldLoginUser() throws FileNotFoundException {
-        assertTrue(new AuthService("data/users.txt").login("123-4567", "1234"));
+        AuthService authService = new AuthService("");
+        authService.loadData("data/users.txt");
+
+        assertTrue(authService.login("123-4567", "1234"));
     }
 
     @Test
     public void shouldReturnLoggedUser() throws FileNotFoundException {
-        AuthService auth = new AuthService("data/users.txt");
+        AuthService auth = new AuthService("");
+        auth.loadData("data/users.txt");
         auth.login("123-4567", "1234");
 
         assertEquals(auth.getLoggedUser().getIdentifier(), "123-4567");
     }
 
+    @Test
+    public void shouldLoadUserData() throws FileNotFoundException {
+        assertTrue(new AuthService("").loadData("data/users.txt"));
+    }
+
+    @Test
+    public void shouldReturnOneUserFromID() throws FileNotFoundException {
+        AuthService authService = new AuthService("");
+        authService.loadData("data/users.txt");
+
+        assertEquals(authService.getUser(0).getIdentifier(), "123-4567");
+        assertEquals(authService.getUser(1).getIdentifier(), "detoni");
+    }
 
 
 }

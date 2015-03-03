@@ -12,7 +12,8 @@ public class BibliotecaApp {
 
     public static void main(String[] args) throws Exception {
         DataService dataService = new DataService();
-        AuthService authService = new AuthService("data/users.txt");
+        AuthService authService = new AuthService("");
+        authService.loadData("data/users.txt");
 
         BibliotecaApp bibApp = new BibliotecaApp(dataService, authService);
 

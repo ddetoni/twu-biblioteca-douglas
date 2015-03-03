@@ -38,7 +38,7 @@ public class BibliotecaAppTest {
         movies.add(new Movie("Birdman", "2014", "Alejandro González Iñárritu", "9"));
         movies.get(1).setAvailability(false);
 
-        Customer customer = new Customer("ddetoni", "Douglas Detoni", "ddetoni@thoughtworks.com", "05381452897");
+        Customer customer = new Customer("ddetoni", "123", "Douglas Detoni", "ddetoni@thoughtworks.com", "05381452897");
 
         when(dataService.loadBooks(anyString())).thenReturn(books);
         when(dataService.loadMovies(anyString())).thenReturn(movies);
@@ -54,7 +54,7 @@ public class BibliotecaAppTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
-        Customer user = new Customer("ddetoni", "", "", "");
+        Customer user = new Customer("ddetoni", "", "", "", "");
 
         bibApp.welcome(user);
 
@@ -68,7 +68,10 @@ public class BibliotecaAppTest {
         ByteArrayInputStream in = new ByteArrayInputStream("123-4567\n1234\n".getBytes());
         System.setIn(in);
 
-        BibliotecaApp biblioteca = new BibliotecaApp(new DataService(), new AuthService("data/users.txt"));
+        AuthService authService = new AuthService("");
+        authService.loadData("data/users.txt");
+
+        BibliotecaApp biblioteca = new BibliotecaApp(new DataService(), authService);
 
         assertNotNull(biblioteca.authentication());
     }
@@ -155,7 +158,7 @@ public class BibliotecaAppTest {
 
     @Test
     public void shouldNotShowTheMyInfoOption() throws Exception {
-        when(authService.getLoggedUser()).thenReturn(new Librarian("detoni"));
+        when(authService.getLoggedUser()).thenReturn(new Librarian("detoni", "123"));
 
         String input = "0\n";
         String output = getLibrarianMenuOptions() +

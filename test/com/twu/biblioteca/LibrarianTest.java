@@ -10,16 +10,16 @@ public class LibrarianTest {
 
     @Test
     public void shouldReturnANewUser() {
-        assertNotNull(new Librarian("ddetoni"));
+        assertNotNull(new Librarian("ddetoni", "123"));
     }
 
     @Test
     public void shouldReturnIdentifier() {
-        assertEquals(new Librarian("ddetoni").getIdentifier(), "ddetoni");
+        assertEquals(new Librarian("ddetoni", "123").getIdentifier(), "ddetoni");
     }
 
     @Test
     public void shouldReturnLibrarianRole() {
-        assertEquals(new Librarian("ddetoni").getRole(), "librarian");
+        assertEquals(new Librarian("ddetoni", "123").getRole(), "librarian");
     }
 }
