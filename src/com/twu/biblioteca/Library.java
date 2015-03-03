@@ -77,11 +77,12 @@ public class Library {
 
     public String allMovies() {
         String allMovies = "\nID | Name | Year | Director | Rating\n";
-        Integer count = 0;
+        Integer count = -1;
 
         for(Movie movie : movies) {
+            count++;
             if (movie.isAvailable()) {
-                allMovies += count++ + " | " + movie.getDetailsSeparatedBy(" | ") + "\n";
+                allMovies += count + " | " + movie.getDetailsSeparatedBy(" | ") + "\n";
             }
         }
 
