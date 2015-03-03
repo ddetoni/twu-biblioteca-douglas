@@ -28,21 +28,24 @@ public class BibliotecaAppTest {
         dataService = mock(DataService.class);
         authService = mock(AuthService.class);
 
+        Customer customer = new Customer("ddetoni", "123", "Douglas Detoni", "ddetoni@thoughtworks.com", "05381452897");
+
         ArrayList<Book> books = new ArrayList<Book>();
         books.add(new Book("Cem anos de solidão", "Gabriel Garcia Marquez", "1967"));
         books.add(new Book("The Agile Samurai", "Jonathan Rasmusson", "2010"));
         books.get(1).setAvailability(false);
+        books.get(1).setCustomer(customer);
 
         ArrayList<Movie> movies = new ArrayList<Movie>();
         movies.add(new Movie("Matrix", "1999", "The Wachowski Brothers", "9"));
         movies.add(new Movie("Birdman", "2014", "Alejandro González Iñárritu", "9"));
         movies.get(1).setAvailability(false);
 
-        Customer customer = new Customer("ddetoni", "123", "Douglas Detoni", "ddetoni@thoughtworks.com", "05381452897");
+
 
         when(dataService.loadBooks(anyString())).thenReturn(books);
         when(dataService.loadMovies(anyString())).thenReturn(movies);
-        when(dataService.save(anyString(), eq(books))).thenReturn(true);
+        when(dataService.saveBooks(anyString(), eq(books))).thenReturn(true);
 
         when(authService.getLoggedUser()).thenReturn(customer);
 
@@ -68,10 +71,10 @@ public class BibliotecaAppTest {
         ByteArrayInputStream in = new ByteArrayInputStream("123-4567\n1234\n".getBytes());
         System.setIn(in);
 
-        AuthService authService = new AuthService("");
+        AuthService authService = new AuthService();
         authService.loadData("data/users.txt");
 
-        BibliotecaApp biblioteca = new BibliotecaApp(new DataService(), authService);
+        BibliotecaApp biblioteca = new BibliotecaApp(new DataService(authService), authService);
 
         assertNotNull(biblioteca.authentication());
     }
@@ -204,6 +207,19 @@ public class BibliotecaAppTest {
         menuOption(input, output);
     }
 
+    @Test
+    public void shouldChooseTheBookCheckedOption() throws Exception {
+        when(authService.getLoggedUser()).thenReturn(new Librarian("detoni", "123"));
+
+        String input = "8\n";
+        String output = getLibrarianMenuOptions() +
+                "Enter an option:\n" +
+                "ID | Title | Customer Name\n" +
+                "1 | The Agile Samurai | Douglas Detoni\n";
+
+        menuOption(input, output);
+    }
+
     private void menuOption(String input, String output) throws Exception {
 
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
@@ -234,8 +250,10 @@ public class BibliotecaAppTest {
                 "\t1 - List of all books.\n" +
                 "\t2 - Check-out book.\n" +
                 "\t3 - Return book.\n" +
+                "\t4 - List of all movies.\n" +
                 "\t5 - Check-out movie.\n" +
                 "\t6 - Return movie.\n" +
+                "\t8 - Books checked out.\n" +
                 "\t0 - Quit\n";
     }
 

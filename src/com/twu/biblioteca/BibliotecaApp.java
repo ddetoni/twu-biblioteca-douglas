@@ -11,8 +11,8 @@ public class BibliotecaApp {
     private Library lib;
 
     public static void main(String[] args) throws Exception {
-        DataService dataService = new DataService();
-        AuthService authService = new AuthService("");
+        AuthService authService = new AuthService();
+        DataService dataService = new DataService(authService);
         authService.loadData("data/users.txt");
 
         BibliotecaApp bibApp = new BibliotecaApp(dataService, authService);
@@ -23,6 +23,7 @@ public class BibliotecaApp {
             bibApp.welcome(loggedUser);
             while(bibApp.menu()) {}
         }
+
 
     }
 
@@ -81,7 +82,7 @@ public class BibliotecaApp {
                 break;
 
             case 2:
-                checkoutBookOption(reader);
+                checkoutBookOption(reader, (Customer) loggedUser);
                 break;
 
             case 3:
@@ -96,7 +97,7 @@ public class BibliotecaApp {
                 print("Enter the movie ID:\n");
                 id = reader.nextInt();
 
-                this.lib.checkoutMovie(id);
+                this.lib.checkoutMovie(id, (Customer) loggedUser);
                 break;
 
             case 6:
@@ -110,6 +111,16 @@ public class BibliotecaApp {
                 myInfoOption(loggedUser);
                 break;
 
+            case 8:
+
+                if(loggedUser.getRole().equals("librarian")) {
+                    print(lib.checkedOutBooks());
+                } else {
+                    print("Select a valid option!\n");
+                }
+
+                break;
+
             default:
                 print("Select a valid option!\n");
         }
@@ -117,7 +128,7 @@ public class BibliotecaApp {
     }
 
     private void quitOption() throws FileNotFoundException {
-        dataService.save("data/books.txt", lib.getBooks());
+        dataService.saveBooks("data/books.txt", lib.getBooks());
         print("*** Bye! ***\n");
     }
 
@@ -125,12 +136,12 @@ public class BibliotecaApp {
         print(this.lib.allBooks());
     }
 
-    private void checkoutBookOption(Scanner reader) throws Exception {
+    private void checkoutBookOption(Scanner reader, Customer customer) throws Exception {
         Integer id;
         print("Enter the book ID:\n");
         id = reader.nextInt();
 
-        this.lib.checkoutBook(id);
+        this.lib.checkoutBook(id, customer);
     }
 
     private void returnBookOption(Scanner reader) throws Exception {
@@ -173,8 +184,10 @@ public class BibliotecaApp {
                 "\t1 - List of all books.\n" +
                 "\t2 - Check-out book.\n" +
                 "\t3 - Return book.\n" +
+                "\t4 - List of all movies.\n" +
                 "\t5 - Check-out movie.\n" +
                 "\t6 - Return movie.\n" +
+                "\t8 - Books checked out.\n" +
                 "\t0 - Quit\n";
     }
 

@@ -40,7 +40,7 @@ public class MovieTest {
     public void shouldReturnTheMovieDetails() {
         Movie movie = new Movie("Matrix", "1999", "The Wachowski Brothers", "9");
 
-        assertEquals(movie.getDetailsSeparatedBy(" | "), "Matrix | 1999 | The Wachowski Brothers | 9");
+        assertEquals(movie.getDetailsSeparatedBy(" | ", false), "Matrix | 1999 | The Wachowski Brothers | 9");
     }
 
 }

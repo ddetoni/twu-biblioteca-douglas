@@ -13,12 +13,21 @@ public class Book extends Item {
         this.year = year;
     }
 
-    public String getDetails(String separator, boolean showAvailability) {
+    public String getDetailsSeparatedBy(String separator, boolean showAvailability) {
 
         if(showAvailability) {
-            return this.name + separator + this.author + separator + this.year + separator + isAvailable();
+            if(isAvailable()) {
+                return this.name + separator + this.author + separator + this.year + separator + isAvailable();
+            } else {
+                return this.name + separator + this.author + separator + this.year + separator + isAvailable() + separator + super.checkedOutBy().getIdentifier();
+            }
+
         } else {
             return this.name + separator + this.author + separator + this.year;
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }

@@ -28,4 +28,7 @@ public class Customer extends User {
                 "Phone Number: " + phone + "\n";
     }
 
+    public String getName() {
+        return name;
+    }
 }

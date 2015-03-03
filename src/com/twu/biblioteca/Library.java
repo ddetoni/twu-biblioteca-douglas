@@ -23,7 +23,7 @@ public class Library {
         for(int i=0; i < this.books.size(); i++) {
             Book book = this.books.get(i);
             if(book.isAvailable()) {
-                allBooks += i + " | " + book.getDetails(" | ", false) + "\n";
+                allBooks += i + " | " + book.getDetailsSeparatedBy(" | ", false) + "\n";
             }
         }
 
@@ -39,11 +39,12 @@ public class Library {
         }
     }
 
-    public boolean checkoutBook(int id) throws Exception {
+    public boolean checkoutBook(int id, Customer customer) throws Exception {
         Book book;
         try {
             book = this.books.get(id);
             book.setAvailability(false);
+            book.setCustomer(customer);
 
             System.out.print("*** Thank you! Enjoy the book. ***\n");
             return true;
@@ -82,19 +83,21 @@ public class Library {
         for(Movie movie : movies) {
             count++;
             if (movie.isAvailable()) {
-                allMovies += count + " | " + movie.getDetailsSeparatedBy(" | ") + "\n";
+                allMovies += count + " | " + movie.getDetailsSeparatedBy(" | ", false) + "\n";
             }
         }
 
         return allMovies;
     }
 
-    public boolean checkoutMovie(int id) {
+    public boolean checkoutMovie(int id, Customer customer) {
         Movie movie;
         try {
             movie = this.movies.get(id);
             movie.setAvailability(false);
+            movie.setCustomer(customer);
 
+            //TODO bugfix, use isAvaliable for check.
             System.out.print("*** Thank you! Enjoy the movie. ***\n");
             return true;
         } catch (Exception e) {
@@ -115,5 +118,23 @@ public class Library {
             System.out.print("*** That is not a valid movie to return. ***\n");
             return false;
         }
+    }
+
+    public Movie getMovie(int id) {
+        return this.movies.get(id);
+    }
+
+    public String checkedOutBooks() {
+        String checkedOutTable = "ID | Title | Customer Name\n";
+        Integer count = -1;
+
+        for(Book book : books) {
+            count++;
+            if (!book.isAvailable()) {
+                checkedOutTable += count + " | " + book.getName() + " | " + book.checkedOutBy().getName() + "\n";
+            }
+        }
+
+        return checkedOutTable;
     }
 }

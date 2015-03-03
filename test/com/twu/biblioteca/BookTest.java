@@ -14,12 +14,17 @@ public class BookTest {
 
     @Test
     public void shouldReturnBookDetailsWithoutAvaliability() {
-        assertEquals(new Book("book 1", "D. Detoni", "2014").getDetails(" | ", false), "book 1 | D. Detoni | 2014");
+        assertEquals(new Book("book 1", "D. Detoni", "2014").getDetailsSeparatedBy(" | ", false), "book 1 | D. Detoni | 2014");
     }
 
     @Test
     public void shouldReturnBookDetailsWithAvaliability() {
-        assertEquals(new Book("book 1", "D. Detoni", "2014").getDetails(":", true), "book 1:D. Detoni:2014:true");
+        Book book = new Book("book 1", "D. Detoni", "2014");
+        book.setAvailability(false);
+        book.setCustomer(new Customer("detoni", "123", "", "", ""));
+
+
+        assertEquals(book.getDetailsSeparatedBy(":", true), "book 1:D. Detoni:2014:false:detoni");
     }
 
     @Test

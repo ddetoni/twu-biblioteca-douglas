@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AuthService {
-    String usersPath;
     User loggedUser;
     private ArrayList<User> users;
 
-    public AuthService(String path) {
-        this.usersPath = path;
+    public AuthService() {
         this.users = new ArrayList<User>();
     }
 
@@ -54,5 +52,17 @@ public class AuthService {
 
     public User getUser(int id) {
         return this.users.get(id);
+    }
+
+    public User getUserByIdentifier(String identifier) {
+
+        for(User user: users) {
+            if(user.getIdentifier().equals(identifier)) {
+                return user;
+            }
+        }
+
+        return null;
+
     }
 }

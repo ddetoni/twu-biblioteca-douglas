@@ -9,6 +9,12 @@ import java.util.Scanner;
 
 public class DataService {
 
+    private AuthService authService;
+
+    public DataService(AuthService authService) {
+        this.authService = authService;
+    }
+
     public ArrayList<Book> loadBooks(String path) throws FileNotFoundException {
         Scanner fileScanner = new Scanner(new File(path));
         ArrayList<Book> books = new ArrayList<Book>();
@@ -16,11 +22,18 @@ public class DataService {
         while(fileScanner.hasNextLine()) {
             String line = fileScanner.nextLine();
             String [] splitedLine = line.split(":");
+            User user = null;
 
             boolean availability = (splitedLine[3]).equals("true");
 
+            if(splitedLine.length > 4) {
+                user = authService.getUserByIdentifier(splitedLine[4]);
+            }
+
+
             Book book = new Book(splitedLine[0], splitedLine[1], splitedLine[2]);
             book.setAvailability(availability);
+            book.setCustomer((Customer) user);
 
             books.add(book);
         }
@@ -28,11 +41,11 @@ public class DataService {
         return books;
     }
 
-    public boolean save(String path, ArrayList<Book> content) throws FileNotFoundException {
+    public boolean saveBooks(String path, ArrayList<Book> content) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(path);
 
         for(Book book: content) {
-            writer.println(book.getDetails(":", true));
+            writer.println(book.getDetailsSeparatedBy(":", true));
         }
         writer.close();
 
@@ -56,5 +69,16 @@ public class DataService {
         }
 
         return movies;
+    }
+
+    public boolean saveMovies(String path, ArrayList<Movie> content) throws FileNotFoundException {
+        PrintWriter writer = new PrintWriter(path);
+
+        for(Movie movie: content) {
+            writer.println(movie.getDetailsSeparatedBy(":", true));
+        }
+        writer.close();
+
+        return true;
     }
 }

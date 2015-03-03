@@ -1,2 +1,5 @@
 123-4567:customer:1234:Douglas Detoni:ddetoni@thoughtworks.com:05381452897
-detoni:librarian:321
+001-0001:customer:1234:Carlos Silveira:ccarlos@gmail.com:02199233243
+001-0002:customer:1234:Maria Arraujo:amaria@gmail.com:01499828373
+001-0003:customer:1234:Joao Castor:jcastor@hotmail.com:05381452897
+000-0000:librarian:321
