@@ -99,7 +99,7 @@ public class LibraryTest {
 
     @Test
     public void shouldReturnAMovieByID() {
-        lib.getBook(0).setAvailability(false);
+        lib.getMovie(0).setAvailability(false);
 
         assertTrue(lib.returnMovie(0));
     }

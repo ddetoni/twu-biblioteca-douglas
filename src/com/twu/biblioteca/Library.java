@@ -43,11 +43,18 @@ public class Library {
         Book book;
         try {
             book = this.books.get(id);
-            book.setAvailability(false);
-            book.setCustomer(customer);
 
-            System.out.print("*** Thank you! Enjoy the book. ***\n");
-            return true;
+            if(book.isAvailable()) {
+                book.setAvailability(false);
+                book.setCustomer(customer);
+
+                System.out.print("*** Thank you! Enjoy the book. ***\n");
+                return true;
+            } else {
+                System.out.print("*** That book is not available. ***\n");
+                return false;
+            }
+
         } catch (Exception e) {
             System.out.print("*** That book is not available. ***\n");
             return false;
@@ -58,10 +65,18 @@ public class Library {
         Book book;
         try {
             book = this.books.get(id);
-            book.setAvailability(true);
 
-            System.out.print("*** Thank you for returning the book. ***\n");
-            return true;
+            if(!book.isAvailable()) {
+                book.setAvailability(true);
+                book.setCustomer(null);
+
+                System.out.print("*** Thank you for returning the book. ***\n");
+                return true;
+            } else {
+                System.out.print("*** That is not a valid book to return. ***\n");
+                return false;
+            }
+
         } catch (Exception e) {
             System.out.print("*** That is not a valid book to return. ***\n");
             return false;
@@ -94,12 +109,18 @@ public class Library {
         Movie movie;
         try {
             movie = this.movies.get(id);
-            movie.setAvailability(false);
-            movie.setCustomer(customer);
 
-            //TODO bugfix, use isAvaliable for check.
-            System.out.print("*** Thank you! Enjoy the movie. ***\n");
-            return true;
+            if(movie.isAvailable()) {
+                movie.setAvailability(false);
+                movie.setCustomer(customer);
+
+                System.out.print("*** Thank you! Enjoy the movie. ***\n");
+                return true;
+            } else {
+                System.out.print("*** That movie is not available. ***\n");
+                return false;
+            }
+
         } catch (Exception e) {
             System.out.print("*** That movie is not available. ***\n");
             return false;
@@ -110,10 +131,18 @@ public class Library {
         Movie movie;
         try {
             movie = this.movies.get(id);
-            movie.setAvailability(true);
 
-            System.out.print("*** Thank you for returning the movie. ***\n");
-            return true;
+            if(!movie.isAvailable()) {
+                movie.setAvailability(true);
+                movie.setCustomer(null);
+
+                System.out.print("*** Thank you for returning the movie. ***\n");
+                return true;
+            } else {
+                System.out.print("*** That is not a valid movie to return. ***\n");
+                return false;
+            }
+
         } catch (Exception e) {
             System.out.print("*** That is not a valid movie to return. ***\n");
             return false;

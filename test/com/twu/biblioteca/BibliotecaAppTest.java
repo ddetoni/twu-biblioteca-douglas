@@ -198,7 +198,7 @@ public class BibliotecaAppTest {
     @Test
     public void shouldChooseTheReturnMovieOption() throws Exception {
         String input = "6\n" +
-                "0\n";
+                "1\n";
         String output = getCustomerMenuOptions() +
                 "Enter an option:\n" +
                 "Enter the movie ID:\n" +
@@ -270,6 +270,54 @@ public class BibliotecaAppTest {
 
         menuOption(input, output);
 
+    }
+
+    @Test
+    public void shouldNotBePossibleToCheckOutACheckedBook() throws Exception {
+        String input = "2\n" +
+                "1\n";
+        String output = getCustomerMenuOptions() +
+                "Enter an option:\n" +
+                "Enter the book ID:\n" +
+                "*** That book is not available. ***\n";
+
+        menuOption(input, output);
+    }
+
+    @Test
+    public void shouldNotBePossibleToReturnANotCheckedBook() throws Exception {
+        String input = "3\n" +
+                "0\n";
+        String output = getCustomerMenuOptions() +
+                "Enter an option:\n" +
+                "Enter the book ID:\n" +
+                "*** That is not a valid book to return. ***\n";
+
+        menuOption(input, output);
+    }
+
+    @Test
+    public void shouldNotBePossibleToCheckOutACheckedMovie() throws Exception {
+        String input = "5\n" +
+                "1\n";
+        String output = getCustomerMenuOptions() +
+                "Enter an option:\n" +
+                "Enter the movie ID:\n" +
+                "*** That movie is not available. ***\n";
+
+        menuOption(input, output);
+    }
+
+    @Test
+    public void shouldNotBePossibleToReturnANotCheckedMovie() throws Exception {
+        String input = "6\n" +
+                "0\n";
+        String output = getCustomerMenuOptions() +
+                "Enter an option:\n" +
+                "Enter the movie ID:\n" +
+                "*** That is not a valid movie to return. ***\n";
+
+        menuOption(input, output);
     }
 
     private void menuOption(String input, String output) throws Exception {
