@@ -82,11 +82,20 @@ public class BibliotecaApp {
                 break;
 
             case 2:
-                checkoutBookOption(reader, (Customer) loggedUser);
+                if(isCustomer(loggedUser)) {
+                    checkoutBookOption(reader, (Customer) loggedUser);
+                } else {
+                    print("Select a valid option!\n");
+                }
                 break;
 
             case 3:
-                returnBookOption(reader);
+                if(isCustomer(loggedUser)) {
+                    returnBookOption(reader);
+                } else {
+                    print("Select a valid option!\n");
+                }
+
                 break;
 
             case 4:
@@ -94,17 +103,21 @@ public class BibliotecaApp {
 
                 break;
             case 5:
-                print("Enter the movie ID:\n");
-                id = reader.nextInt();
+                if(isCustomer(loggedUser)) {
+                    checkoutMovieOption((Customer) loggedUser, reader);
+                } else {
+                    print("Select a valid option!\n");
+                }
 
-                this.lib.checkoutMovie(id, (Customer) loggedUser);
                 break;
 
             case 6:
-                print("Enter the movie ID:\n");
-                id = reader.nextInt();
+                if(isCustomer(loggedUser)) {
+                    returnMovieOption(reader);
+                } else {
+                    print("Select a valid option!\n");
+                }
 
-                this.lib.returnMovie(id);
                 break;
 
             case 7:
@@ -125,6 +138,22 @@ public class BibliotecaApp {
                 print("Select a valid option!\n");
         }
         return true;
+    }
+
+    private void returnMovieOption(Scanner reader) {
+        Integer id;
+        print("Enter the movie ID:\n");
+        id = reader.nextInt();
+
+        this.lib.returnMovie(id);
+    }
+
+    private void checkoutMovieOption(Customer loggedUser, Scanner reader) {
+        Integer id;
+        print("Enter the movie ID:\n");
+        id = reader.nextInt();
+
+        this.lib.checkoutMovie(id, loggedUser);
     }
 
     private void quitOption() throws FileNotFoundException {
@@ -182,11 +211,7 @@ public class BibliotecaApp {
     private String getLibrarianMenuOptions() {
         return "\nOptions:\n" +
                 "\t1 - List of all books.\n" +
-                "\t2 - Check-out book.\n" +
-                "\t3 - Return book.\n" +
                 "\t4 - List of all movies.\n" +
-                "\t5 - Check-out movie.\n" +
-                "\t6 - Return movie.\n" +
                 "\t8 - Books checked out.\n" +
                 "\t0 - Quit\n";
     }

@@ -220,6 +220,58 @@ public class BibliotecaAppTest {
         menuOption(input, output);
     }
 
+    @Test
+    public void shouldNotBeAbleToChooseTheCheckOutBookOptionAsALibrarian() throws Exception {
+        when(authService.getLoggedUser()).thenReturn(new Librarian("detoni", "123"));
+
+        String input = "2\n";
+        String output = getLibrarianMenuOptions() +
+                "Enter an option:\n" +
+                "Select a valid option!\n";
+
+        menuOption(input, output);
+
+    }
+
+    @Test
+    public void shouldNotBeAbleToChooseTheReturnBookOptionAsALibrarian() throws Exception {
+        when(authService.getLoggedUser()).thenReturn(new Librarian("detoni", "123"));
+
+        String input = "3\n";
+        String output = getLibrarianMenuOptions() +
+                "Enter an option:\n" +
+                "Select a valid option!\n";
+
+        menuOption(input, output);
+
+    }
+
+    @Test
+    public void shouldNotBeAbleToChooseTheCheckOutMovieOptionAsALibrarian() throws Exception {
+        when(authService.getLoggedUser()).thenReturn(new Librarian("detoni", "123"));
+
+        String input = "5\n";
+        String output = getLibrarianMenuOptions() +
+                "Enter an option:\n" +
+                "Select a valid option!\n";
+
+        menuOption(input, output);
+
+    }
+
+    @Test
+    public void shouldNotBeAbleToChooseTheReturnMovieOptionAsALibrarian() throws Exception {
+        when(authService.getLoggedUser()).thenReturn(new Librarian("detoni", "123"));
+
+        String input = "6\n";
+        String output = getLibrarianMenuOptions() +
+                "Enter an option:\n" +
+                "Select a valid option!\n";
+
+        menuOption(input, output);
+
+    }
+
     private void menuOption(String input, String output) throws Exception {
 
         ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
@@ -248,11 +300,7 @@ public class BibliotecaAppTest {
     private String getLibrarianMenuOptions() {
         return "\nOptions:\n" +
                 "\t1 - List of all books.\n" +
-                "\t2 - Check-out book.\n" +
-                "\t3 - Return book.\n" +
                 "\t4 - List of all movies.\n" +
-                "\t5 - Check-out movie.\n" +
-                "\t6 - Return movie.\n" +
                 "\t8 - Books checked out.\n" +
                 "\t0 - Quit\n";
     }
