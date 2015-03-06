@@ -1,6 +1,6 @@
-Cem anos de solidão:Gabriel Garcia Marquez:1967:false:001-0001
+Cem anos de solidão:Gabriel Garcia Marquez:1967:false:123-4567
 The Agile Samurai:Jonathan Rasmusson:2010:false:001-0001
-Livro da vida:Jose Silva:1980:false:001-0001
+Livro da vida:Jose Silva:1980:true
 Mortes vivas:Aldo Amaral:1970:false:123-4567
-Las Ventanas:Juan Castanho:1999:true
+Las Ventanas:Juan Castanho:1999:false:123-4567
 A Casa Torta:Lars Thor:2000:false:123-4567

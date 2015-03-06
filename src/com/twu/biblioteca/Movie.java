@@ -17,6 +17,7 @@ public class Movie extends Item{
 
     }
 
+    @Override
     public String getDetailsSeparatedBy(String separator, boolean showAvaliability) {
         if(showAvaliability) {
             return name + separator + year + separator + director + separator + rating + separator + isAvailable() + separator + super.checkedOutBy().getIdentifier();

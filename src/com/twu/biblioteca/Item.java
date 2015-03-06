@@ -23,4 +23,6 @@ abstract class Item {
     public Customer checkedOutBy() {
         return this.customer;
     }
+
+    public abstract String getDetailsSeparatedBy(String separator, boolean showAvailability);
 }
