@@ -1,15 +1,15 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.domain;
 
 abstract class Item {
 
     private boolean availability;
     private Customer customer;
 
-    public Item() {
+    Item() {
         this.availability = true;
     }
 
-    public boolean isAvailable() {
+    boolean isAvailable() {
         return this.availability;
     }
 

@@ -4,6 +4,14 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.twu.biblioteca.domain.Book;
+import com.twu.biblioteca.domain.Customer;
+import com.twu.biblioteca.domain.Library;
+import com.twu.biblioteca.domain.Movie;
+import com.twu.biblioteca.domain.User;
+import com.twu.biblioteca.services.AuthService;
+import com.twu.biblioteca.services.DataService;
+
 public class BibliotecaApp {
 
     private DataService dataService;
@@ -28,7 +36,7 @@ public class BibliotecaApp {
 
     }
 
-    public BibliotecaApp(DataService dataService, AuthService authService) throws FileNotFoundException {
+    BibliotecaApp(DataService dataService, AuthService authService) throws FileNotFoundException {
         this.authService = authService;
         this.dataService = dataService;
 
@@ -37,12 +45,12 @@ public class BibliotecaApp {
         this.lib = new Library(books, movies);
     }
 
-    public void welcome(User loggedUser) {
+    void welcome(User loggedUser) {
         print("Hello " + loggedUser.getIdentifier() + ". Welcome to the Bangalore Public Library Management System. " +
                 "You are authenticated as a " + loggedUser.getRole().toUpperCase() + ".\n");
     }
 
-    public User authentication() throws FileNotFoundException {
+    User authentication() throws FileNotFoundException {
         Scanner reader = new Scanner(System.in);
 
         print("Enter the identifier: \n");
@@ -56,7 +64,7 @@ public class BibliotecaApp {
         return this.authService.getLoggedUser();
     }
 
-    public boolean menu() throws Exception {
+    boolean menu() throws Exception {
         User loggedUser = authService.getLoggedUser();
 
         Scanner reader = new Scanner(System.in);

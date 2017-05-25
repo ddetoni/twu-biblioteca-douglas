@@ -1,9 +1,12 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.services;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.twu.biblioteca.domain.Book;
+import com.twu.biblioteca.domain.Customer;
+import com.twu.biblioteca.domain.Movie;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

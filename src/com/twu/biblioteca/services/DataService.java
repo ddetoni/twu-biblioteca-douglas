@@ -1,10 +1,15 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.services;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import com.twu.biblioteca.domain.Book;
+import com.twu.biblioteca.domain.Customer;
+import com.twu.biblioteca.domain.Movie;
+import com.twu.biblioteca.domain.User;
 
 
 public class DataService {
@@ -71,7 +76,7 @@ public class DataService {
         return movies;
     }
 
-    public boolean saveMovies(String path, ArrayList<Movie> content) throws FileNotFoundException {
+    boolean saveMovies(String path, ArrayList<Movie> content) throws FileNotFoundException {
         PrintWriter writer = new PrintWriter(path);
 
         for (Movie movie : content) {

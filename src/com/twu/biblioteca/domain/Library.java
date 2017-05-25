@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.domain;
 
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class Library {
         this.movies = movies;
     }
 
-    public boolean addBook(String name, String author, String year) {
+    boolean addBook(String name, String author, String year) {
         return this.books.add(new Book(name, author, year));
     }
 
@@ -30,7 +30,7 @@ public class Library {
         return allBooks;
     }
 
-    public Book getBook(int id) {
+    Book getBook(int id) {
         try {
             return this.books.get(id);
         } catch (IndexOutOfBoundsException e) {
@@ -83,7 +83,7 @@ public class Library {
         }
     }
 
-    public int totalOfBooks() {
+    int totalOfBooks() {
         return this.books.size();
     }
 
@@ -149,7 +149,7 @@ public class Library {
         }
     }
 
-    public Movie getMovie(int id) {
+    Movie getMovie(int id) {
         return this.movies.get(id);
     }
 

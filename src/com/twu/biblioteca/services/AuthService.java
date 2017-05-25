@@ -1,10 +1,14 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.services;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import com.twu.biblioteca.domain.Customer;
+import com.twu.biblioteca.domain.Librarian;
+import com.twu.biblioteca.domain.User;
 
 public class AuthService {
 
@@ -53,11 +57,11 @@ public class AuthService {
         return true;
     }
 
-    public User getUser(int id) {
+    User getUser(int id) {
         return this.users.get(id);
     }
 
-    public User getUserByIdentifier(String identifier) {
+    User getUserByIdentifier(String identifier) {
 
         for (User user : users) {
             if (user.getIdentifier().equals(identifier)) {

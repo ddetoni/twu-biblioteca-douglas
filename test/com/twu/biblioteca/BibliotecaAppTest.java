@@ -7,6 +7,12 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
+import com.twu.biblioteca.domain.Book;
+import com.twu.biblioteca.domain.Customer;
+import com.twu.biblioteca.domain.Librarian;
+import com.twu.biblioteca.domain.Movie;
+import com.twu.biblioteca.services.AuthService;
+import com.twu.biblioteca.services.DataService;
 import org.junit.Before;
 import org.junit.Test;
 

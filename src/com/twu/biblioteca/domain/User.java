@@ -1,7 +1,7 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.domain;
 
 
-abstract class User {
+public abstract class User {
 
     private String identifier;
     private String password;
