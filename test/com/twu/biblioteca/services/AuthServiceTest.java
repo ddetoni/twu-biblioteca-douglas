@@ -2,7 +2,6 @@ package com.twu.biblioteca.services;
 
 import java.io.FileNotFoundException;
 
-import com.twu.biblioteca.services.AuthService;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

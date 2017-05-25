@@ -1,6 +1,5 @@
 package com.twu.biblioteca.domain;
 
-import com.twu.biblioteca.domain.Librarian;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
