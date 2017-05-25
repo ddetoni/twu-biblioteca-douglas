@@ -1,9 +1,8 @@
 package com.twu.biblioteca;
 
-/**
- * Created by ddetoni on 2/26/15.
- */
-public class Movie extends Item{
+
+public class Movie extends Item {
+
     private String rating;
     private String director;
     private String year;
@@ -19,7 +18,7 @@ public class Movie extends Item{
 
     @Override
     public String getDetailsSeparatedBy(String separator, boolean showAvaliability) {
-        if(showAvaliability) {
+        if (showAvaliability) {
             return name + separator + year + separator + director + separator + rating + separator + isAvailable() + separator + super.checkedOutBy().getIdentifier();
         } else {
             return name + separator + year + separator + director + separator + rating;

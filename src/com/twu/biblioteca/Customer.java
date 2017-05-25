@@ -1,8 +1,6 @@
 package com.twu.biblioteca;
 
-/**
- * Created by ddetoni on 2/20/15.
- */
+
 public class Customer extends User {
 
     private String name;

@@ -1,9 +1,10 @@
 package com.twu.biblioteca;
 
-import org.junit.Test;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -22,7 +23,7 @@ public class DataServiceTest {
         AuthService authService = new AuthService();
         authService.loadData("data/users.txt");
 
-        ArrayList<Book> books = new DataService(authService).loadBooks("data/fixtures/books_test.txt");
+        List<Book> books = new DataService(authService).loadBooks("data/fixtures/books_test.txt");
 
         assertEquals(books.size(), 2);
         assertEquals(books.get(1).checkedOutBy().getIdentifier(), "123-4567");
@@ -41,7 +42,7 @@ public class DataServiceTest {
 
     @Test
     public void shouldLoadMovieData() throws FileNotFoundException {
-        ArrayList<Movie> movies = new DataService(new AuthService()).loadMovies("data/fixtures/movies_test.txt");
+        List<Movie> movies = new DataService(new AuthService()).loadMovies("data/fixtures/movies_test.txt");
 
         assertEquals(movies.size(), 2);
         assertEquals(movies.get(1).checkedOutBy(), null);

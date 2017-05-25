@@ -20,9 +20,9 @@ public class Library {
     public String allBooks() {
         String allBooks = "\nID | Name | Author | Year | Status\n";
 
-        for(int i=0; i < this.books.size(); i++) {
+        for (int i = 0; i < this.books.size(); i++) {
             Book book = this.books.get(i);
-            if(book.isAvailable()) {
+            if (book.isAvailable()) {
                 allBooks += i + " | " + book.getDetailsSeparatedBy(" | ", false) + "\n";
             }
         }
@@ -44,7 +44,7 @@ public class Library {
         try {
             book = this.books.get(id);
 
-            if(book.isAvailable()) {
+            if (book.isAvailable()) {
                 book.setAvailability(false);
                 book.setCustomer(customer);
 
@@ -66,7 +66,7 @@ public class Library {
         try {
             book = this.books.get(id);
 
-            if(!book.isAvailable()) {
+            if (!book.isAvailable()) {
                 book.setAvailability(true);
                 book.setCustomer(null);
 
@@ -95,7 +95,7 @@ public class Library {
         String allMovies = "\nID | Name | Year | Director | Rating\n";
         Integer count = -1;
 
-        for(Movie movie : movies) {
+        for (Movie movie : movies) {
             count++;
             if (movie.isAvailable()) {
                 allMovies += count + " | " + movie.getDetailsSeparatedBy(" | ", false) + "\n";
@@ -110,7 +110,7 @@ public class Library {
         try {
             movie = this.movies.get(id);
 
-            if(movie.isAvailable()) {
+            if (movie.isAvailable()) {
                 movie.setAvailability(false);
                 movie.setCustomer(customer);
 
@@ -132,7 +132,7 @@ public class Library {
         try {
             movie = this.movies.get(id);
 
-            if(!movie.isAvailable()) {
+            if (!movie.isAvailable()) {
                 movie.setAvailability(true);
                 movie.setCustomer(null);
 
@@ -157,7 +157,7 @@ public class Library {
         String checkedOutTable = "ID | Title | Customer Name\n";
         Integer count = -1;
 
-        for(Book book : books) {
+        for (Book book : books) {
             count++;
             if (!book.isAvailable()) {
                 checkedOutTable += count + " | " + book.getName() + " | " + book.checkedOutBy().getName() + "\n";

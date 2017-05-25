@@ -1,23 +1,23 @@
 package com.twu.biblioteca;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 
 public class LibraryTest {
 
-    private ArrayList<Book> books;
-    private ArrayList<Movie> movies;
     private Library lib;
 
     @Before
     public void setUp() {
-        books = new ArrayList<Book>();
+        ArrayList<Book> books = new ArrayList<>();
         Book book = new Book("Book 1", "D.D.", "2015");
         Book book2 = new Book("Book 2", "D.D.", "2015");
         Book book3 = new Book("Book 3", "D.D.", "2015");
@@ -27,7 +27,7 @@ public class LibraryTest {
         book3.setCustomer(new Customer("001-1234", "123", "Carlos Artor", "", ""));
 
 
-        movies = new ArrayList<Movie>();
+        ArrayList<Movie> movies = new ArrayList<>();
         Movie movie = new Movie("Matrix", "1999", "The Wachowski Brothers", "9");
 
         books.add(book);
@@ -53,7 +53,7 @@ public class LibraryTest {
     public void shouldPrintTheWholeBookList() throws FileNotFoundException {
         assertEquals(lib.allBooks(),
                 "\nID | Name | Author | Year | Status\n" +
-                "0 | Book 1 | D.D. | 2015\n");
+                        "0 | Book 1 | D.D. | 2015\n");
 
     }
 
@@ -88,7 +88,7 @@ public class LibraryTest {
     @Test
     public void shouldReturnAllTheMovies() {
         assertEquals(lib.allMovies(), "\nID | Name | Year | Director | Rating\n" +
-                                        "0 | Matrix | 1999 | The Wachowski Brothers | 9\n");
+                "0 | Matrix | 1999 | The Wachowski Brothers | 9\n");
     }
 
     @Test
@@ -107,7 +107,7 @@ public class LibraryTest {
     @Test
     public void shouldReturnTheCheckedOutBooks() {
         assertEquals(lib.checkedOutBooks(), "ID | Title | Customer Name\n" +
-                                            "1 | Book 2 | Marcos Their\n" +
-                                            "2 | Book 3 | Carlos Artor\n");
+                "1 | Book 2 | Marcos Their\n" +
+                "2 | Book 3 | Carlos Artor\n");
     }
 }

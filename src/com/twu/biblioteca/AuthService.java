@@ -1,15 +1,18 @@
 package com.twu.biblioteca;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AuthService {
-    User loggedUser;
-    private ArrayList<User> users;
+
+    private User loggedUser;
+    private List<User> users;
 
     public AuthService() {
-        this.users = new ArrayList<User>();
+        this.users = new ArrayList<>();
     }
 
     public boolean login(String username, String password) throws FileNotFoundException {
@@ -18,8 +21,8 @@ public class AuthService {
 
     private boolean checkCredentials(String username, String password) {
 
-        for(User user : users) {
-            if(user.getIdentifier().equals(username) && user.getPassword().equals(password)) {
+        for (User user : users) {
+            if (user.getIdentifier().equals(username) && user.getPassword().equals(password)) {
                 this.loggedUser = user;
                 return true;
             }
@@ -56,8 +59,8 @@ public class AuthService {
 
     public User getUserByIdentifier(String identifier) {
 
-        for(User user: users) {
-            if(user.getIdentifier().equals(identifier)) {
+        for (User user : users) {
+            if (user.getIdentifier().equals(identifier)) {
                 return user;
             }
         }

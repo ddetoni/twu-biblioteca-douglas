@@ -19,9 +19,10 @@ public class BibliotecaApp {
 
         User loggedUser = bibApp.authentication();
 
-        if(loggedUser != null) {
+        if (loggedUser != null) {
             bibApp.welcome(loggedUser);
-            while(bibApp.menu()) {}
+            while (bibApp.menu()) {
+            }
         }
 
 
@@ -38,7 +39,7 @@ public class BibliotecaApp {
 
     public void welcome(User loggedUser) {
         print("Hello " + loggedUser.getIdentifier() + ". Welcome to the Bangalore Public Library Management System. " +
-                "You are authenticated as a " + loggedUser.getRole().toUpperCase() +".\n");
+                "You are authenticated as a " + loggedUser.getRole().toUpperCase() + ".\n");
     }
 
     public User authentication() throws FileNotFoundException {
@@ -61,7 +62,7 @@ public class BibliotecaApp {
         Scanner reader = new Scanner(System.in);
         Integer id;
 
-        if(isCustomer(loggedUser)) {
+        if (isCustomer(loggedUser)) {
             print(getCustomerMenuOptions());
         } else {
             print(getLibrarianMenuOptions());
@@ -71,8 +72,7 @@ public class BibliotecaApp {
         print("Enter an option:\n");
         Integer option = reader.nextInt();
 
-        switch(option)
-        {
+        switch (option) {
             case 0:
                 quitOption();
                 return false;
@@ -82,7 +82,7 @@ public class BibliotecaApp {
                 break;
 
             case 2:
-                if(isCustomer(loggedUser)) {
+                if (isCustomer(loggedUser)) {
                     checkoutBookOption(reader, (Customer) loggedUser);
                 } else {
                     print("Select a valid option!\n");
@@ -90,7 +90,7 @@ public class BibliotecaApp {
                 break;
 
             case 3:
-                if(isCustomer(loggedUser)) {
+                if (isCustomer(loggedUser)) {
                     returnBookOption(reader);
                 } else {
                     print("Select a valid option!\n");
@@ -103,7 +103,7 @@ public class BibliotecaApp {
 
                 break;
             case 5:
-                if(isCustomer(loggedUser)) {
+                if (isCustomer(loggedUser)) {
                     checkoutMovieOption((Customer) loggedUser, reader);
                 } else {
                     print("Select a valid option!\n");
@@ -112,7 +112,7 @@ public class BibliotecaApp {
                 break;
 
             case 6:
-                if(isCustomer(loggedUser)) {
+                if (isCustomer(loggedUser)) {
                     returnMovieOption(reader);
                 } else {
                     print("Select a valid option!\n");
@@ -126,7 +126,7 @@ public class BibliotecaApp {
 
             case 8:
 
-                if(loggedUser.getRole().equals("librarian")) {
+                if (loggedUser.getRole().equals("librarian")) {
                     print(lib.checkedOutBooks());
                 } else {
                     print("Select a valid option!\n");
@@ -182,7 +182,7 @@ public class BibliotecaApp {
     }
 
     private void myInfoOption(User loggedUser) {
-        if(isCustomer(loggedUser)) {
+        if (isCustomer(loggedUser)) {
             print("*** My Info ***\n");
             Customer loggedCustomer = (Customer) loggedUser;
 

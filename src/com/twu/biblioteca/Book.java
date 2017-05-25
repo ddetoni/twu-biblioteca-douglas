@@ -16,8 +16,8 @@ public class Book extends Item {
     @Override
     public String getDetailsSeparatedBy(String separator, boolean showAvailability) {
 
-        if(showAvailability) {
-            if(isAvailable()) {
+        if (showAvailability) {
+            if (isAvailable()) {
                 return this.name + separator + this.author + separator + this.year + separator + isAvailable();
             } else {
                 return this.name + separator + this.author + separator + this.year + separator + isAvailable() + separator + super.checkedOutBy().getIdentifier();

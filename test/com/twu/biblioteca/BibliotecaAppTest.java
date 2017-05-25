@@ -1,14 +1,14 @@
 package com.twu.biblioteca;
 
 
-import org.junit.Before;
-import org.junit.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -40,7 +40,6 @@ public class BibliotecaAppTest {
         movies.add(new Movie("Matrix", "1999", "The Wachowski Brothers", "9"));
         movies.add(new Movie("Birdman", "2014", "Alejandro González Iñárritu", "9"));
         movies.get(1).setAvailability(false);
-
 
 
         when(dataService.loadBooks(anyString())).thenReturn(books);

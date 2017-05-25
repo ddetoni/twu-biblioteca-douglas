@@ -1,8 +1,6 @@
 package com.twu.biblioteca;
 
-/**
- * Created by ddetoni on 2/20/15.
- */
+
 public class Librarian extends User {
 
 
